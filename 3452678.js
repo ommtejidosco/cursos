@@ -1,6 +1,6 @@
 function _3452678() {
     let course = {
-        "id": "espejo-renacer-1",
+        "id": "espejo-renacer-2",
         "name": "Espejo Renacer",
         "teacher": {
             "name": "Laura Duque González",

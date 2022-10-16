@@ -20,14 +20,14 @@
   <script type="module" src="/prueba.js"></script>
   <meta name='description' content='No te pierdas ninguno de los contenidos del curso'>
   <meta name='robots' content='index,follow'>
-  <link href='/apple-touch-icon.png' rel='apple-touch-icon' sizes='180x180'>
+  <link href='/apple-touch-icon-omm.webp' rel='apple-touch-icon' sizes='180x180'>
   <link href='/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
   <link href='/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
   <link href='/manifest.json' rel='manifest'>
   <link color='#F02D00' href='/safari-pinned-tab.svg' rel='mask-icon'>
   <link href='/favicon.ico' rel='shortcut icon' type='image/x-icon'>
   <meta content='#FFFFFF' name='theme-color'>
-  <link href='/logo-omm.png' rel='logo' type='image/png'>
+  <link href='/logo-omm.webp' rel='logo' type='image/png'>
 
 
   <link rel='preload' media='screen' href='/tailwind-494f36e1.css' as='style'
@@ -2633,8 +2633,8 @@
 
   <nav class='navbar navbar-expand-lg fixed-top navbar-dark bg-dark nav--fixed' id='js-mainnav' role='navigation'>
     <div class='container' data-controller='header' data-header-is-traditional-search-value='false'>
-      <a class='logo' href='/'>
-        <img src='/logo-omm.png'>
+      <a class='logo' href='/' data-navigo>
+        <img src='/logo-omm.webp'>
       </a>
       <a class='navbar-toggler' aria-controls='navbar-collapse' aria-expanded='false' aria-label='Ver navegación'
         href='#js-navigation-main-mobile'><span class='sr-only'>
@@ -2653,15 +2653,27 @@
         </ul>
       </div>
 
-      <nav class='d-none js-mobile-navbar-track' id='js-navigation-main-mobile'>
+      <!--<nav class='d-none js-mobile-navbar-track' id='js-navigation-main-mobile'>
         <ul>
+          <li></li>
           <li>
             <a class='mm-listitem__text--lg js-amplitude-track'
               href='/courses' data-navigo>Mis cursos</a>
           </li>
         </ul>
+      </nav>-->
+      <nav class='d-none js-mobile-navbar-track' id='js-navigation-main-mobile'>
+        <ul>
+        <li>
+          <a class='mm-listitem__text--lg js-amplitude-track'
+            href='/'>Inicio</a>
+        </li>
+        <li>
+          <a class='mm-listitem__text--lg js-amplitude-track'
+            href='/' data-navigo>Mis cursos</a>
+        </li>
+        </ul>
       </nav>
-
       <div class='mr-lg-left'>
         <div class='user-nav'>
           <ul class='clearfix loggedin loggedin--left'>
@@ -2682,7 +2694,7 @@
       <nav aria-label='breadcrumb' class='container'>
         <ol class='breadcrumb'>
           <li><a href='/courses' data-navigo><img style='width: 1.7em; height: 1.7em; display: inline-block;'
-                src='/icon.png'></a></li>
+                src='/icon-omm.webp'></a></li>
           <li><a href='/courses' data-navigo>Mis cursos</a></li>
         </ol>
       </nav>

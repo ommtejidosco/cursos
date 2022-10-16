@@ -7,14 +7,14 @@ function _eyJpZCI6IjEyMzQ1NDU2NyJ9(){
                 "id": "introduccion-macrame-1",
                 "name": "Introducción al macramé",
                 "description": "Un curso de Laura Duque González",
-                "image": "/videos/nudo-alondra.png",
+                "image": "/videos/nudo-alondra.webp",
                 "content": "1234345"
             },
             {
-                "id": "espejo-renacer-1",
+                "id": "espejo-renacer-2",
                 "name": "Espejo Renacer",
                 "description": "Un curso de Laura Duque González",
-                "image": "https://cdn.domestika.org/c_fill,dpr_auto,f_auto,h_202,pg_1,t_base_params,w_360/v1648139929/course-covers/000/003/403/3403-original.jpg?1648139929",
+                "image": "/courses/espejo-renacer.webp",
                 "content": "3452678"
             }
         ]

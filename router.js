@@ -23,7 +23,10 @@ function breadCon(courseId, courseName, unitName){
         breadcrumb.appendChild(unitLi);
     }
 }
-router.on("/courses", function (match) {
+router.on("/", function (match) {
+    router.navigate('/courses')
+})
+.on("/courses", function (match) {
     let account = localStorage.getItem('account')
     //window.verifyResponse(account)
     //    .then(r => {
