@@ -27,7 +27,7 @@ function createItem(course) {
             </div>
             <div class="btn-toolbar">
               <a class="a-button a-button--primary a-button--small mt-4 mr-4"
-                href="/courses/#{id}#" data-navigo><span>Continuar</span>
+                href="/courses/#{id}#" data-navigo><span>Iniciar</span>
                 <i class="a-icon-arrow-right"></i>
               </a>
             </div>
