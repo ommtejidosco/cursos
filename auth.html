@@ -6,7 +6,7 @@
 
 <body>
     <script type="module">
-        import * as jose from './node_modules/jose/dist/browser/index.js';
+        import * as jose from './jose/dist/browser/index.js';
         let configureInterval;
         window.verifyResponse = async function verifyResponse(jws) {
             let key = await jose.importSPKI(window.serverPublicKey, 'RS256');

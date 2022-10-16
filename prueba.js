@@ -1,4 +1,4 @@
-import * as jose from './node_modules/jose/dist/browser/index.js';
+import * as jose from './jose/dist/browser/index.js';
 
 async function generateKeyPair(instance){
     const { publicKey, privateKey } = await jose.generateKeyPair('RS256', { extractable: true });
