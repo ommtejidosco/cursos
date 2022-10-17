@@ -2,7 +2,10 @@ const router = new Navigo("/");
 
 router.hooks({
     after() {
-        router.updatePageLinks()
+        //console.log(router.getCurrentLocation())
+        router.updatePageLinks();
+        //hideMenu();
+        //window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 });
 
