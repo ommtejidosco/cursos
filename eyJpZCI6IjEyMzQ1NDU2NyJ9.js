@@ -11,7 +11,7 @@ function _eyJpZCI6IjEyMzQ1NDU2NyJ9(){
                 "content": "1234345"
             },
             {
-                "id": "espejo-renacer-2",
+                "id": "espejo-renacer-3",
                 "name": "Espejo Renacer",
                 "description": "Un curso de Laura Duque González",
                 "image": "/courses/espejo-renacer.webp",
