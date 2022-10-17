@@ -1,24 +1,5 @@
 function _eyJpZCI6IjEyMzQ1NDU2NyJ9(){
-    //window.configureAccount("eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJuYW1lIjoiV2lsbGlhbSBNb2xpbmEiLCJjb3Vyc2VzIjpbeyJpZCI6ImludHJvZHVjY2lvbi1tYWNyYW1lIiwibmFtZSI6IkludHJvZHVjY2lcdTAwZjNuIGFsIG1hY3JhbVx1MDBlOSIsImRlc2NyaXB0aW9uIjoiVW4gY3Vyc28gZGUgTGF1cmEgRHVxdWUgR29uelx1MDBlMWxleiIsImltYWdlIjoiL3ZpZGVvcy9udWRvLWFsb25kcmEucG5nIiwiY29udGVudCI6IjEyMzQzNDUifSx7ImlkIjoiZXNwZWpvLXJlbmFjZXIiLCJuYW1lIjoiRXNwZWpvIFJlbmFjZXIiLCJkZXNjcmlwdGlvbiI6IlVuIGN1cnNvIGRlIExhdXJhIER1cXVlIEdvbnpcdTAwZTFsZXoiLCJpbWFnZSI6Imh0dHBzOi8vY2RuLmRvbWVzdGlrYS5vcmcvY19maWxsLGRwcl9hdXRvLGZfYXV0byxoXzIwMixwZ18xLHRfYmFzZV9wYXJhbXMsd18zNjAvdjE2NDgxMzk5MjkvY291cnNlLWNvdmVycy8wMDAvMDAzLzQwMy8zNDAzLW9yaWdpbmFsLmpwZz8xNjQ4MTM5OTI5IiwiY29udGVudCI6IjM0NTI2NzgifV19.YvrEepgGJpaiOhVBwFVRqafH6xGv2hq5PXTMB-tKCE_wSkE6WTlOtBnwJTjH3UvoChVZQkolt1yYKGvqS0wLoSgLhShpbuD9zxGEdVavVZSc5SfPGSWGHXYMQ_PVGEqvbVSU1DiHlN5qNwVKh7E_UsTz5RIRCNb0EMX-W07tOXE6HmQ9RloFdSXiRcqjnzws5ZWz5JlubPv8rYk8lU7uwm6CbgeotNRdLvFCui_Sdv1JhmyRfEfVpoZz5y-z_szlF0QT8nmUh5UDRvcOnLtVPnoRuwnrnxAswL5PdVYEKah8RONp_KTeTyge6Kc0433xzirBb73tfEjL5A4ZTog-0Q")
-    window.configureAccount({
-        "name": "William Molina",
-        "courses": [
-            {
-                "id": "introduccion-macrame-4",
-                "name": "Introducción al macramé",
-                "description": "Un curso de Laura Duque González",
-                "image": "/resources/nudo-alondra.webp",
-                "content": "1234345"
-            },
-            {
-                "id": "espejo-renacer-5",
-                "name": "Espejo Renacer",
-                "description": "Un curso de Laura Duque González",
-                "image": "/courses/espejo-renacer.webp",
-                "content": "3452678"
-            }
-        ]
-    });
+    window.configureAccount("eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJuYW1lIjoiTGF1cmEgRHVxdWUgR29uelx1MDBlMWxleiIsImNvdXJzZXMiOlt7ImlkIjoiaW50cm9kdWNjaW9uLW1hY3JhbWUtNCIsInZlcnNpb24iOiIxLjAiLCJuYW1lIjoiSW50cm9kdWNjaVx1MDBmM24gYWwgbWFjcmFtXHUwMGU5IiwiZGVzY3JpcHRpb24iOiJVbiBjdXJzbyBkZSBMYXVyYSBEdXF1ZSBHb256XHUwMGUxbGV6IiwiaW1hZ2UiOiIvcmVzb3VyY2VzL251ZG8tYWxvbmRyYS53ZWJwIiwiY29udGVudCI6IjEyMzQzNDUifSx7ImlkIjoiZXNwZWpvLXJlbmFjZXItNSIsInZlcnNpb24iOiIxLjAiLCJuYW1lIjoiRXNwZWpvIFJlbmFjZXIiLCJkZXNjcmlwdGlvbiI6IlVuIGN1cnNvIGRlIExhdXJhIER1cXVlIEdvbnpcdTAwZTFsZXoiLCJpbWFnZSI6Ii9jb3Vyc2VzL2VzcGVqby1yZW5hY2VyLndlYnAiLCJjb250ZW50IjoiMzQ1MjY3OCJ9XX0.e-Gq5HPNmW3Wu3gJbH7VVBCmGaimPWeZzHqPkQH3PzNHChOEM0BBCsXE0_3jwCEYZFFGVxM7MW4KpVy-xF1mZlq0jCieWJpKCm_dtObmKY4XOwB54EyH3FTNwz8y-JQV_RiKTXU9ge32rh2b3gzt8McjADySUTLvPD9vwW_xihJrwN0f8Q6vb_kiJuck8FPpRYTwtngziDy7m233Z8A3xmtd1c9kOZac1mQ3VEDQko2UiOALizPlC0Oa4xdUtQZ3jWRX7kXiNHnqEnv_laI7542mZphQdH_HbZZcW2nbj4SuDSkOQOhz9xQVZir4Rq-mLFq9dUvGMFi52Ys45VM_tA");
 }
 
 _eyJpZCI6IjEyMzQ1NDU2NyJ9()

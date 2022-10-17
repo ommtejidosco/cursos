@@ -43,22 +43,22 @@ MwIDAQAB
         }
 
         window.configureAccount = function (jws) {
-            //window.verifyResponse(jws)
-            //    .then(result => {
-                    //localStorage.setItem('account', jws)
-                    localStorage.setItem('account', JSON.stringify(jws))
-                    //let courseIds = result.payload.courses.map((value) => value.id)
-                    let courseIds = jws.courses.map((value) => value.id)
-                    //result.payload.courses.forEach((course) => addScript("/"+course.content+".js", document.body))
-                    jws.courses.forEach((course) => addScript("/"+course.content+".js", document.body))
+            window.verifyResponse(jws)
+                .then(result => {
+                    localStorage.setItem('account', jws)
+                    let courseIds = result.payload.courses.map((value) => value.id)
+                    result.payload.courses.forEach((course) => addScript("/"+course.content+".js", document.body))
                     configureInterval = setInterval(configureDone, 2000, courseIds)
-            //    })
+                })
         }
 
         let queryString = new URL(window.location).search;
         let params = queryString.replace('?', '').split('&').filter((v) => v.includes("id")).map((v) => v.split("="));
         var authId = params.length == 1 ? params[0][1] : undefined;
-        if (authId) addScript("/" + authId + ".js", document.body)
+        if (authId){
+            localStorage.setItem('AuthId',authId)
+            addScript("/" + authId + ".js", document.body)
+        } 
     </script>
 </body>
 
