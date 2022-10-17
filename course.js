@@ -1,3 +1,8 @@
+function changeUnit(){
+  let value = document.getElementById("js-course-course-select-navigation").value;
+  if(value&&value!="") router.navigate(value)
+}
+
 function courseContent(id, name, content, teacher){
     let template = `<div class='course-page' data-params='{&quot;course_purchased&quot;:true}' id='course-row-1900'>
     <div class='container'>
@@ -46,13 +51,9 @@ function courseContent(id, name, content, teacher){
             </div>
           </div>
           <nav class='m-mobile-navigation mb-6' role='navigation'>
-            <select class='form-control' id='js-course-course-select-navigation'>
+            <select class='form-control' id='js-course-course-select-navigation' onchange="changeUnit()">
               <option
-                value='https://www.domestika.org/es/courses/1900-top-down-prendas-a-crochet-de-una-sola-pieza/course'>
-                Resumen del curso
-              </option>
-              <option
-                value='https://www.domestika.org/es/courses/1900-top-down-prendas-a-crochet-de-una-sola-pieza/units/8062-introduccion'>
+                value=''>
                 Unidades
               </option>
             </select>
@@ -66,14 +67,9 @@ function courseContent(id, name, content, teacher){
             <div class='m-stack m-stack--lg'></div>
             <nav role='navigation'>
               <ul class='nav nav--lateral-new nav--course-new'>
-                <li>
-                  <a
-                    href='https://www.domestika.org/es/courses/1900-top-down-prendas-a-crochet-de-una-sola-pieza/course'>Resumen
-                    del curso</a>
-                </li>
                 <li class='active'>
                   <a
-                    href='https://www.domestika.org/es/courses/1900-top-down-prendas-a-crochet-de-una-sola-pieza/units/8062-introduccion'>Unidades</a>
+                    href='' data-navigo>Unidades</a>
                   <ul id="menu-unidades">
 
                   </ul>

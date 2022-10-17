@@ -44,7 +44,7 @@ router.on("/", function (match) {
     breadCon(course.id,course.name, course.units[0].name);
     document.getElementById('menu-unidades').innerHTML = unidades(course.units, unit, match.data.id)
     let mobileUnits = document.getElementById('js-course-course-select-navigation')
-    unidadesMobile(course.units, unit).forEach(element => {
+    unidadesMobile(course.id, course.units, unit).forEach(element => {
         mobileUnits.appendChild(element);
     });
 }).on("/courses/:id/units/:unit", function (match) {
@@ -59,7 +59,7 @@ router.on("/", function (match) {
     document.getElementById('content').innerHTML = content;
     document.getElementById('menu-unidades').innerHTML = unidades(course.units, unit, match.data.id)
     let mobileUnits = document.getElementById('js-course-course-select-navigation')
-    unidadesMobile(course.units, unit).forEach(element => {
+    unidadesMobile(course.id, course.units, unit).forEach(element => {
         mobileUnits.appendChild(element);
     });
 });
