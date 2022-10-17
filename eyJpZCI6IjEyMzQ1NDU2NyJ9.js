@@ -4,7 +4,7 @@ function _eyJpZCI6IjEyMzQ1NDU2NyJ9(){
         "name": "William Molina",
         "courses": [
             {
-                "id": "introduccion-macrame-2",
+                "id": "introduccion-macrame-3",
                 "name": "Introducción al macramé",
                 "description": "Un curso de Laura Duque González",
                 "image": "/videos/nudo-alondra.webp",
