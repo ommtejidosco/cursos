@@ -28,6 +28,9 @@ function breadCon(courseId, courseName, unitName) {
 router.on("/", function (match) {
     router.navigate('/courses')
 })
+.on("/index.html", function (match) {
+    router.navigate('/courses')
+})
     .on("/courses", function (match) {
         let account = localStorage.getItem('account')
         window.verifyResponse(account)
