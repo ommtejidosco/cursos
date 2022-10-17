@@ -7,7 +7,7 @@ self.addEventListener('install', function(event) {
             '/',
             '/manifest.json',
             '/index.html',
-            '/assets/favicon-196.png'
+            '/icon-omm.webp'
           ]
         );
       })
