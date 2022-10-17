@@ -4,8 +4,8 @@ router.hooks({
     after() {
         //console.log(router.getCurrentLocation())
         router.updatePageLinks();
-        //hideMenu();
-        //window.scrollTo({ top: 0, behavior: 'smooth' });
+        hideMenu();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 });
 

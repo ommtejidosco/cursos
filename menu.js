@@ -1,5 +1,8 @@
 function hideMenu(){
-    document.getElementById('course_units').classList.remove('mm-wrapper_opened', 'mm-wrapper_blocking', 'mm-wrapper_background', 'mm-wrapper_opening');
-    document.getElementById('js-navigation-main-mobile').classList.remove('mm-menu_opened');
-    document.getElementById('mm-0').style = "";
+    let slideOut = document.getElementsByClassName('mm-wrapper__blocker mm-slideout')[0]
+    if (slideOut) slideOut.dispatchEvent(new Event('mousedown'));
+}
+
+function toggleMenu(){
+    if(document.getElementById('mm-0').style.minHeight) hideMenu();
 }

@@ -25,6 +25,7 @@ function courseContent(id, name, content, teacher){
                 , #{teacher.description}#
               </h2>
             </div>
+            <br>
           </div>
           <div class='d-md-none'>
             <div class='sidebar-course__section'>
@@ -42,7 +43,7 @@ function courseContent(id, name, content, teacher){
                   </div>
                 </div>
                 <div class='avatar avatar--m'>
-                  <a href='https://www.domestika.org/es/santapazienzia'><img width='48' height='48'
+                  <a href=''><img width='48' height='48'
                       alt='#{teacher.name}#' title='#{teacher.name}#' class=' lazyload'
                       src='/teacher.webp' />
                   </a>
