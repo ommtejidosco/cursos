@@ -19,7 +19,7 @@ function courseContent(id, name, content, teacher){
               <h2 class='course-header-new__course-by d-none d-md-flex'>
                 <span>
                   Un curso de <span class='popover--teacher__wrapper js-teacher-popover-wrapper'><a
-                      class='js-teacher-popover-link' href='' data-navigo>#{teacher.name}#</a>
+                      class='js-teacher-popover-link' href='/courses/#{id}#' data-navigo>#{teacher.name}#</a>
                   </span>
                 </span>
                 , #{teacher.description}#
@@ -33,7 +33,7 @@ function courseContent(id, name, content, teacher){
                 <div class='media-body'>
                   Un curso de <span class='popover--teacher__wrapper js-teacher-popover-wrapper'><a
                       class='teacher-badge__name js-teacher-popover-link'
-                      href=''>#{teacher.name}#</a>
+                      href='/courses/#{id}#' data-navigo>#{teacher.name}#</a>
                   </span>
                   <div class='teacher-badge__role'>
                     #{teacher.description}#
@@ -43,7 +43,7 @@ function courseContent(id, name, content, teacher){
                   </div>
                 </div>
                 <div class='avatar avatar--m'>
-                  <a href=''><img width='48' height='48'
+                  <a href='/courses/#{id}#' data-navigo><img width='48' height='48'
                       alt='#{teacher.name}#' title='#{teacher.name}#' class=' lazyload'
                       src='/teacher.webp' />
                   </a>
