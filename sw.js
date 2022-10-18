@@ -45,10 +45,10 @@ function cacheFirst(event){
 }
 
 self.addEventListener('fetch', function (event) {
-    if(event.request.url.includes('resources'))
+    if(event.request.url.includes('resources') 
+    || event.request.url.includes('courses/espejo-renacer.webp'))
       return cacheFirst(event);
-    if(event.request.url.includes('.mp4')){
-      console.log('Video')
+    else if(event.request.url.includes('.mp4')){
       return fetch(event.request)
     }else
       return networkFirst(event);
