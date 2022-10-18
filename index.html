@@ -33,6 +33,11 @@
   <link rel='preload' media='screen' href='/tailwind-494f36e1.css' as='style'
     onload='this.onload=null;this.rel=&#39;stylesheet&#39;' />
   <style>
+    .copyleft {
+      display: inline-block;
+      transform: rotate(180deg);
+    }
+
     .fa {
       display: none;
       font: normal normal normal 14px/1 FontAwesome;
@@ -2636,8 +2641,8 @@
       <a class='logo' href='/' data-navigo>
         <img src='/logo-omm.webp'>
       </a>
-      <a class='navbar-toggler' onclick="toggleMenu()" aria-controls='navbar-collapse' aria-expanded='false' aria-label='Ver navegación'
-        href='#js-navigation-main-mobile'><span class='sr-only'>
+      <a class='navbar-toggler' onclick="toggleMenu()" aria-controls='navbar-collapse' aria-expanded='false'
+        aria-label='Ver navegación' href='#js-navigation-main-mobile'><span class='sr-only'>
           Ver navegación
         </span>
         <i class='a-icon-menu--heavy navbar-toggler__icon'></i>
@@ -2654,22 +2659,19 @@
       </div>
       <nav class='d-none js-mobile-navbar-track' id='js-navigation-main-mobile'>
         <ul>
-        <li>
-          <a class='mm-listitem__text--lg js-amplitude-track'
-            href='/'>Inicio</a>
-        </li>
-        <li>
-          <a class='mm-listitem__text--lg js-amplitude-track'
-            href='/' data-navigo>Mis cursos</a>
-        </li>
+          <li>
+            <a class='mm-listitem__text--lg js-amplitude-track' href='/'>Inicio</a>
+          </li>
+          <li>
+            <a class='mm-listitem__text--lg js-amplitude-track' href='/' data-navigo>Mis cursos</a>
+          </li>
         </ul>
       </nav>
       <div class='mr-lg-left'>
         <div class='user-nav'>
           <ul class='clearfix loggedin loggedin--left'>
             <li class='my-courses d-none d-lg-block'>
-              <a class='js-amplitude-track'
-                href='/courses' data-navigo>Mis cursos
+              <a class='js-amplitude-track' href='/courses' data-navigo>Mis cursos
               </a>
             </li>
           </ul>
@@ -2712,10 +2714,12 @@
               <h4>Conecta</h4>
               <ul class='list-inline networks d-none d-sm-flex'>
                 <li class='list-inline-item'>
-                  <a title='Facebook' href='https://www.facebook.com/Omm-Tejidos-107061625354739'><i class='a-icon-facebook-min'></i></a>
+                  <a title='Facebook' href='https://www.facebook.com/Omm-Tejidos-107061625354739'><i
+                      class='a-icon-facebook-min'></i></a>
                 </li>
                 <li class='list-inline-item'>
-                  <a title='Instagram' href='https://www.instagram.com/omm_tejidos/'><i class='a-icon-instagram'></i></a>
+                  <a title='Instagram' href='https://www.instagram.com/omm_tejidos/'><i
+                      class='a-icon-instagram'></i></a>
                 </li>
               </ul>
             </div>
@@ -2723,7 +2727,7 @@
         </div>
         <ul class='legal-list'>
           <li>
-            &copy; Omm Tejidos 2022
+            <span class="copyleft">&copy;</span> Omm Tejidos 2022
           </li>
         </ul>
       </div>
