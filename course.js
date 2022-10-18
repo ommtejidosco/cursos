@@ -19,7 +19,7 @@ function courseContent(id, name, content, teacher){
               <h2 class='course-header-new__course-by d-none d-md-flex'>
                 <span>
                   Un curso de <span class='popover--teacher__wrapper js-teacher-popover-wrapper'><a
-                      class='js-teacher-popover-link' href=''>#{teacher.name}#</a>
+                      class='js-teacher-popover-link' href='' data-navigo>#{teacher.name}#</a>
                   </span>
                 </span>
                 , #{teacher.description}#
