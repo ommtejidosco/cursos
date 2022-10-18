@@ -26,11 +26,11 @@ function breadCon(courseId, courseName, unitName) {
     }
 }
 router.on("/", function (match) {
-    router.navigate('/courses')
-})
-.on("/index.html", function (match) {
-    router.navigate('/courses')
-})
+        router.navigate('/courses')
+    })
+    .on("/index.html", function (match) {
+        router.navigate('/courses')
+    })
     .on("/courses", function (match) {
         let account = localStorage.getItem('account')
         window.verifyResponse(account)
@@ -51,7 +51,8 @@ router.on("/", function (match) {
             unidadesMobile(course.id, course.units, unit).forEach(element => {
                 mobileUnits.appendChild(element);
             });
-        }else router.navigate('/courses')
+            localStorage.setItem(course.id+'-opened',new Date())
+        } else router.navigate('/courses')
     }).on("/courses/:id/units/:unit", function (match) {
         let course = JSON.parse(localStorage.getItem(match.data.id))
         if (course) {
@@ -68,7 +69,8 @@ router.on("/", function (match) {
             unidadesMobile(course.id, course.units, unit).forEach(element => {
                 mobileUnits.appendChild(element);
             });
-        }else router.navigate('/courses')
+            localStorage.setItem(course.id+'-opened',new Date())
+        } else router.navigate('/courses')
     });
 
 window.addEventListener('load', (event) => {

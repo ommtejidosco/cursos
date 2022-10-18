@@ -1,4 +1,4 @@
-function createItem(course) {
+function createItem(course, opened) {
   let template = `<li class="paper paper--shadowless course-item">
     <div class="paper__body">
       <div class="row">
@@ -27,7 +27,7 @@ function createItem(course) {
             </div>
             <div class="btn-toolbar">
               <a class="a-button a-button--primary a-button--small mt-4 mr-4"
-                href="/courses/#{id}#" data-navigo><span>Iniciar</span>
+                href="/courses/#{id}#" data-navigo><span>#{open-course}#</span>
                 <i class="a-icon-arrow-right"></i>
               </a>
             </div>
@@ -36,7 +36,8 @@ function createItem(course) {
       </div>
     </div>
   </li>`;
-  return template.replaceAll('#{id}#', course.id).replaceAll('#{name}#', course.name).replaceAll('#{image}#', course.image).replaceAll('#{description}#', course.description);
+  return template.replaceAll('#{id}#', course.id).replaceAll('#{name}#', course.name).replaceAll('#{image}#', course.image).replaceAll('#{description}#', course.description)
+  .replaceAll('#{open-course}#',opened?'Continuar':'Iniciar');
 }
 
 function courseList(courses) {
@@ -55,7 +56,7 @@ function courseList(courses) {
   </div>
 </div>`;
   let coursesStr = courses.map((element) => {
-    return createItem(element)
+    return createItem(element, localStorage.getItem(element.id+'-opened')?true:false)
   }).join('');
   document.getElementById('content').innerHTML = template.replaceAll('#{courses}#', coursesStr)
 }
