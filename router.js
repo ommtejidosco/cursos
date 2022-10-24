@@ -1,4 +1,9 @@
 const router = new Navigo("/");
+var mqtt;
+var reconnecTimeout = 2000;
+var host = "test.mosquitto.org";
+var port = 8081;
+var LOADED_TOPIC = "ommtejidos/loaded/";
 
 router.hooks({
     after() {
@@ -73,6 +78,38 @@ router.on("/", function (match) {
         } else router.navigate('/courses')
     });
 
+function sendMessage(topic, msg) {
+    //console.log('Send to '+topic, msg)
+    let message = new Paho.MQTT.Message(JSON.stringify(msg));
+    message.retained = true;
+    message.destinationName = topic;
+    mqtt.send(message);
+}
+
+function onConnect() {
+    console.log("Connected");
+    let account = localStorage.getItem('account')
+    window.verifyResponse(account)
+            .then(r => {
+                sendMessage(LOADED_TOPIC+localStorage.getItem('AuthId'),{
+                    "name": r.payload.name,
+                    "time": new Date()
+                })
+                mqtt.disconnect()
+            })
+};
+
+function createClient() {
+    mqtt = new Paho.MQTT.Client(host, port, "clientjs");
+    var options = {
+        onSuccess: onConnect,
+        useSSL: true,
+        cleanSession: true
+    };
+    mqtt.connect(options);
+};
+
 window.addEventListener('load', (event) => {
-    router.resolve()
+    router.resolve();
+    createClient();
 });
