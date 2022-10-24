@@ -29,13 +29,13 @@ MwIDAQAB
             parent.appendChild(script);
         }
 
-        function configured(keys){
-            return keys.map((id) => localStorage.getItem(id)?true:false).every(Boolean)
+        function configured(keys) {
+            return keys.map((id) => localStorage.getItem(id) ? true : false).every(Boolean)
         }
 
-        function configureDone(keys){
+        function configureDone(keys) {
             console.log('Validando...')
-            if(configured(keys)) {
+            if (configured(keys)) {
                 clearInterval(configureInterval);
                 configureInterval = null;
                 window.location.replace('/courses');
@@ -47,17 +47,24 @@ MwIDAQAB
                 .then(result => {
                     localStorage.setItem('account', jws)
                     let courseIds = result.payload.courses.map((value) => value.id)
-                    result.payload.courses.forEach((course) => addScript("/"+course.content+".js", document.body))
+                    result.payload.courses.forEach((course) => addScript("/" + course.content + ".js", document.body))
                     configureInterval = setInterval(configureDone, 2000, courseIds)
                 })
+        }
+
+        async function loadProfile(resource) {
+            const response = await fetch(resource);
+            return await response.text();
         }
 
         let queryString = new URL(window.location).search;
         let params = queryString.replace('?', '').split('&').filter((v) => v.includes("id")).map((v) => v.split("="));
         var authId = params.length == 1 ? params[0][1] : undefined;
-        if (authId){
-            localStorage.setItem('AuthId',authId)
-            addScript("/" + authId + ".js", document.body)
+        if (authId) {
+            localStorage.setItem('AuthId', authId)
+            loadProfile("/" + authId).then(r => {
+                window.configureAccount(r)
+            })
         } 
     </script>
 </body>
