@@ -90,6 +90,10 @@
     background: inherit
 }
 
+.mm-wrapper_blocking body {
+    overflow: hidden;
+}
+
 .mm-slideout {
     transition: transform .4s ease;
     z-index: 1
