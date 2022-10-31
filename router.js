@@ -30,13 +30,11 @@ function breadCon(courseId, courseName, unitName) {
         breadcrumb.appendChild(unitLi);
     }
 }
-router.on("/", function (match) {
-        router.navigate('/courses')
+router.on("/", coursesRoute)
+    .on("/index.html", coursesRoute)
+    .on("/courses", function (match) {
+        router.navigate('/')
     })
-    .on("/index.html", function (match) {
-        router.navigate('/courses')
-    })
-    .on("/courses", coursesRoute)
     .on("/courses/:id", courseRoute)
     .on("/courses/:id/units/:unit", courseRoute);
 
