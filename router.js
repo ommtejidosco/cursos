@@ -36,47 +36,9 @@ router.on("/", function (match) {
     .on("/index.html", function (match) {
         router.navigate('/courses')
     })
-    .on("/courses", function (match) {
-        let account = localStorage.getItem('account')
-        window.verifyResponse(account)
-            .then(r => {
-                courseList(r.payload.courses)
-                breadCon()
-                router.updatePageLinks()
-            })
-    }).on("/courses/:id", function (match) {
-        let course = JSON.parse(localStorage.getItem(match.data.id))
-        if (course) {
-            let content = courseContent(course.id, course.name, course.units[0].content, course.teacher);
-            document.getElementById('content').innerHTML = content;
-            let unit = course.units[0].id;
-            breadCon(course.id, course.name, course.units[0].name);
-            document.getElementById('menu-unidades').innerHTML = unidades(course.units, unit, match.data.id)
-            let mobileUnits = document.getElementById('js-course-course-select-navigation')
-            unidadesMobile(course.id, course.units, unit).forEach(element => {
-                mobileUnits.appendChild(element);
-            });
-            localStorage.setItem(course.id+'-opened',new Date())
-        } else router.navigate('/courses')
-    }).on("/courses/:id/units/:unit", function (match) {
-        let course = JSON.parse(localStorage.getItem(match.data.id))
-        if (course) {
-            let unit = match.data.unit;
-            let selectedUnit;
-            course.units.forEach((value, index) => {
-                if (value.id == match.data.unit) selectedUnit = index;
-            })
-            breadCon(course.id, course.name, course.units[selectedUnit].name);
-            let content = courseContent(course.id, course.name, course.units[selectedUnit].content, course.teacher);
-            document.getElementById('content').innerHTML = content;
-            document.getElementById('menu-unidades').innerHTML = unidades(course.units, unit, match.data.id)
-            let mobileUnits = document.getElementById('js-course-course-select-navigation')
-            unidadesMobile(course.id, course.units, unit).forEach(element => {
-                mobileUnits.appendChild(element);
-            });
-            localStorage.setItem(course.id+'-opened',new Date())
-        } else router.navigate('/courses')
-    });
+    .on("/courses", coursesRoute)
+    .on("/courses/:id", courseRoute)
+    .on("/courses/:id/units/:unit", courseRoute);
 
 function sendMessage(topic, msg) {
     //console.log('Send to '+topic, msg)

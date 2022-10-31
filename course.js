@@ -1,10 +1,10 @@
-function changeUnit(){
+function changeUnit() {
   let value = document.getElementById("js-course-course-select-navigation").value;
-  if(value&&value!="") router.navigate(value)
+  if (value && value != "") router.navigate(value)
 }
 
-function courseContent(id, name, content, teacher){
-    let template = `<div class='course-page' data-params='{&quot;course_purchased&quot;:true}' id='course-row-1900'>
+function courseContent(id, name, content, teacher) {
+  let template = `<div class='course-page' data-params='{&quot;course_purchased&quot;:true}' id='course-row-1900'>
     <div class='container'>
       <div class='row'>
         <div class='col-md-12'>
@@ -82,8 +82,39 @@ function courseContent(id, name, content, teacher){
       </div>
     </div>
   </div>`;
-  return template.replaceAll('#{course-content}#', content).replaceAll('#{name}#',name).replaceAll('#{id}#',id)
-  .replaceAll('#{teacher.name}#', teacher.name)
-  .replaceAll('#{teacher.description}#', teacher.description)
-  .replaceAll('#{teacher.location}#', teacher.location);
+  return template.replaceAll('#{course-content}#', content).replaceAll('#{name}#', name).replaceAll('#{id}#', id)
+    .replaceAll('#{teacher.name}#', teacher.name)
+    .replaceAll('#{teacher.description}#', teacher.description)
+    .replaceAll('#{teacher.location}#', teacher.location);
+}
+
+function openUnit(course, selectedUnit) {
+  let unit = course.units[selectedUnit].id;
+  breadCon(course.id, course.name, course.units[selectedUnit].name);
+  let content = courseContent(course.id, course.name, course.units[selectedUnit].content, course.teacher);
+  document.getElementById('content').innerHTML = content;
+  document.getElementById('menu-unidades').innerHTML = unidades(course.units, unit, course.id)
+  let mobileUnits = document.getElementById('js-course-course-select-navigation')
+  unidadesMobile(course.id, course.units, unit).forEach(element => {
+    mobileUnits.appendChild(element);
+  });
+  localStorage.setItem(course.id + '-opened', new Date())
+}
+
+function selectUnit(course, unit) {
+  let selected = 0;
+  if (unit) course.units.forEach((value, index) => {
+    if (value.id == unit) selected = index;
+  });
+  return selected;
+}
+
+function openCourse(data) {
+  let course = JSON.parse(localStorage.getItem(data.id))
+  if (course) openUnit(course, selectUnit(course, data.unit))
+  else router.navigate('/courses')
+}
+
+function courseRoute(match){
+    openCourse(match.data)
 }

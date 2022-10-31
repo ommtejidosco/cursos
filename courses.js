@@ -60,3 +60,13 @@ function courseList(courses) {
   }).join('');
   document.getElementById('content').innerHTML = template.replaceAll('#{courses}#', coursesStr)
 }
+
+function coursesRoute(match) {
+  let account = localStorage.getItem('account')
+  window.verifyResponse(account)
+      .then(r => {
+          courseList(r.payload.courses)
+          breadCon()
+          router.updatePageLinks()
+      })
+}
