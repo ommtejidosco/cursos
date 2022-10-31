@@ -109,7 +109,14 @@ function createClient() {
     mqtt.connect(options);
 };
 
+function addScript(src, parent) {
+    let script = document.createElement('script');
+    script.src = src;
+    parent.appendChild(script);
+}
+
 window.addEventListener('load', (event) => {
     router.resolve();
     createClient();
+    addScript('/contact/contact.js', document.body);
 });
