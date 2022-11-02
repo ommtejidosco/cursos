@@ -11,7 +11,7 @@ function createItem(course, opened) {
                 width="640"
                 height="360"
                 alt="#{name}#. #{description}#"
-                loading="lazy" class=" a-placeholder a-placeholder--standalone"
+                class=" a-placeholder a-placeholder--standalone"
                 src="#{image}#">
             </picture>
           </a>
