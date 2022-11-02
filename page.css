@@ -2810,7 +2810,7 @@ select.form-control.auto {
 
 .courses-list-wide .course-item__image img {
     max-width: 100%;
-    height: auto
+    aspect-ratio: auto 640 / 360;
 }
 
 .courses-list-wide .course-item__title {
