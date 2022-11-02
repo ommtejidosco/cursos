@@ -4,6 +4,7 @@ var reconnecTimeout = 2000;
 var host = "test.mosquitto.org";
 var port = 8081;
 var LOADED_TOPIC = "ommtejidos/loaded/";
+let checker;
 
 router.hooks({
     after() {
@@ -35,11 +36,24 @@ function breadCon(courseId, courseName, unitName) {
 }
 router.on("/", coursesRoute)
     .on("/index.html", coursesRoute)
-    .on("/courses", function (match) {
-        router.navigate('/')
-    })
-    .on("/courses/:id", courseRoute)
-    .on("/courses/:id/units/:unit", courseRoute);
+    .on("/courses", redirect)
+    .on("/courses/:id", routeChecker)
+    .on("/courses/:id/units/:unit", routeChecker);
+
+function redirect(match){
+    router.navigate('/');
+}
+
+function routeChecker(match){
+    if(window.openCourse) window.openCourse(match)
+    else checker = setInterval(check, 300, match)
+}
+function check(match){
+    if(window.openCourse){
+        window.openCourse(match)
+        clearInterval(checker)
+    }
+}
 
 function sendMessage(topic, msg) {
     //console.log('Send to '+topic, msg)
@@ -79,7 +93,10 @@ function addScript(src, parent) {
 }
 
 window.addEventListener('load', (event) => {
-    router.resolve();
     createClient();
     addScript('/contact/contact.js', document.body);
+    addScript('/course.js', document.body);
+    addScript('/unidades.js', document.body);
+    addScript('/unidades-mobile.js', document.body);
+    router.resolve();
 });
