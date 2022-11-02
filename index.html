@@ -26,50 +26,179 @@
   <link href='/icon-omm.webp' rel='shortcut icon' type='image/x-icon'>
   <meta content='#ffeee6' name='theme-color'>
   <link href='/logo-omm.webp' rel='logo' type='image/png'>
-  <link rel="stylesheet" href="/tailwind.css"/>
-  <link rel="stylesheet" href="/main.css"/>
-  <link rel="stylesheet" href="/vendor.css"/>
-  <link rel="stylesheet" href="/page.css"/>
+  <link rel="stylesheet" href="/tailwind.css" />
+  <link rel="stylesheet" href="/main.css" />
+  <link rel="stylesheet" href="/vendor.css" />
+  <link rel="stylesheet" href="/page.css" />
   <script src="/resources/core/js/navigo.min.js"></script>
   <script src="/resources/core/js/mqttws31.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .navbar {
+      height: 50px;
+      width: 100%;
+      background-color: #ffeee6;
+      position: fixed;
+      z-index: 1000;
+    }
+
+    .navbar .nav-header {
+      display: inline;
+    }
+
+    .navbar .nav-header .nav-logo {
+      display: inline-block;
+      margin-top: 7px;
+      margin-left: 15px;
+    }
+
+    .navbar .nav-links {
+      display: inline;
+      float: right;
+      font-size: 18px;
+      z-index: 1000;
+    }
+
+    .navbar .nav-links a {
+      padding: 10px 12px;
+      text-decoration: none;
+      font-weight: 550;
+      color: white;
+    }
+
+    /* Hover effects */
+    .navbar .nav-links a:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    /* responsive navbar toggle button */
+    .navbar #nav-check,
+    .navbar .nav-btn,
+    .navbar .nav-links,
+    .nav-hover {
+      display: none;
+    }
+
+    .no-scroll {
+      overflow-y: hidden;
+    }
+
+    @media (max-width:991.98px) {
+      .navbar .nav-header .nav-logo {
+        margin-left: 50px;
+      }
+
+      .nav-hover {
+        display: inline-block;
+        position: absolute;
+        top: 50px;
+        left: 0px;
+        width: 100%;
+        height: calc(100vh - 50px);
+        background-color: #000;
+        transition: opacity .2s ease .35s;
+        z-index: 999;
+      }
+
+      .navbar .nav-btn {
+        display: inline-block;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+
+      .navbar .nav-btn label {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 12px;
+      }
+
+      .navbar .nav-btn label span {
+        display: block;
+        height: 10px;
+        width: 25px;
+        border-top: 3px solid #80543c;
+      }
+
+      .navbar .nav-btn label:hover,
+      .navbar #nav-check:checked~.nav-btn label {
+        cursor: pointer;
+      }
+
+      .navbar .nav-links {
+        position: absolute;
+        display: block;
+        text-align: left;
+        width: 70%;
+        max-width: 300px;
+        height: calc(100vh - 50px);
+        background-color: #80543c;
+        transition: all 0.3s ease-in;
+        overflow: hidden;
+        top: 50px;
+        left: 0px;
+      }
+
+      .navbar .nav-links a {
+        display: block;
+      }
+
+      /* when nav toggle button not checked */
+      .navbar #nav-check:not(:checked)~.nav-links {
+        left: -300px;
+      }
+
+      .navbar #nav-check:not(:checked)~.nav-hover {
+        opacity: 0;
+        width: 0px;
+        transition-duration: 0s;
+        transition-delay: 0s;
+      }
+
+      /* when nav toggle button is checked */
+      .navbar #nav-check:checked~.nav-links {
+        left: 0px;
+        overflow: hidden;
+      }
+
+      .navbar #nav-check:checked~.nav-hover {
+        opacity: .5;
+        width: 100%;
+      }
+
+      .navbar #nav-check:checked~body {
+        overflow-y: hidden;
+      }
+    }
+  </style>
 </head>
 
 <body data-locale='es'>
-  <div class='page'>
-    <header id='site-header' role='banner'>
-  </div>
-
-  <nav class='navbar navbar-expand-lg fixed-top navbar-dark bg-dark nav--fixed' id='js-mainnav' role='navigation'>
-    <div class='container' data-controller='header' data-header-is-traditional-search-value='false'>
-      <a class='logo' href='/' data-navigo>
-        <img src='/logo-omm.webp'>
-      </a>
-      <a class='navbar-toggler' onclick="toggleMenu()" aria-controls='navbar-collapse' aria-expanded='false'
-        aria-label='Ver navegación' href='#js-navigation-main-mobile'><span class='sr-only'>
-          Ver navegación
-        </span>
-        <i class='a-icon-menu--heavy navbar-toggler__icon'></i>
-      </a>
-      <div class='collapse navbar-collapse'>
-        <ul class='navbar-nav js-navbar-track'>
-          <!--<li class='active dropdown dropdown--mega js-dropdown-hover nav-item'>
-            <a id='courses-nav-dropdown'
-              class='nav-link dropdown-toggle dropdown-toggle--no-caret dropdown-toggle--courses js-dropdown-toggle-hover'
-              href='/courses' data-navigo> Mis cursos
-            </a>
-          </li>-->
-        </ul>
+  <header id='site-header' role='banner'>
+    <div class="navbar">
+      <input type="checkbox" id="nav-check">
+      <div class="nav-btn">
+        <label for="nav-check">
+          <i class='a-icon-menu--heavy navbar-toggler__icon'></i>
+        </label>
       </div>
-      <nav class='d-none js-mobile-navbar-track' id='js-navigation-main-mobile'>
-        <ul>
-          <li>
-            <a class='mm-listitem__text--lg js-amplitude-track' href='/'>Inicio</a>
-          </li>
-          <li>
-            <a class='mm-listitem__text--lg js-amplitude-track' href='/' data-navigo>Mis cursos</a>
-          </li>
-        </ul>
-      </nav>
+      <div class="nav-header">
+        <div class="nav-logo">
+          <a href="#">
+            <img src="/logo-omm.webp" height="40px" width="120px" alt="logo">
+          </a>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href='/' data-navigo>Mis cursos</a>
+      </div>
+      <div class="nav-hover"></div>
       <div class='mr-lg-left'>
         <div class='user-nav'>
           <ul class='clearfix loggedin loggedin--left'>
@@ -81,9 +210,17 @@
         </div>
       </div>
     </div>
-  </nav>
   </header>
-
+  <script>
+    function hideMenu() {
+      document.getElementById('nav-check').checked = false;
+      document.body.classList.remove('no-scroll')
+    }
+    document.getElementById('nav-check').addEventListener('click', () => {
+      document.body.classList.toggle('no-scroll')
+    })
+    document.getElementsByClassName('nav-hover')[0].addEventListener('click', hideMenu)
+  </script>
   <main class='js-main-content' id='main-content' role='main'>
     <div class='content-nav content-nav--light d-none d-md-block'>
       <nav aria-label='breadcrumb' class='container'>
@@ -104,9 +241,6 @@
     <!-- Inicio curso -->
     <script src="/course.js"></script>
     <!-- Fin curso -->
-    <!-- Inicio menu -->
-    <script src="/menu.js"></script>
-    <!-- Fin menu -->
   </main>
   <footer class='site-footer' id='site-footer'>
     <div class='footer-corp t-footer-corp'>
@@ -137,25 +271,6 @@
     </div>
 
   </footer>
-  <div aria-hidden='true' class='modal modal--fullscreen modal--course' id='js-modal-course' role='dialog'
-    tabindex='-1'>
-    <div class='modal-dialog'>
-      <div class='modal-content'></div>
-    </div>
-  </div>
-
-
-  <div class='js-modal-default-placeholder'></div>
-  <div class='js-modal pro-plus-credit-redeem'></div>
-  <div class='js-modal pro-plus-credit-redeem-mobile'></div>
-  <div class='js-modal js-a-pro-plus-buy-credits'></div>
-  </div>
-  <div id='cookiesAlertWidget'></div>
-  <script src='/application-15df50867e55f60d6f0324378d364efc89dd2a53e7fdfaaae0a4456a02c186b2.js' crossorigin=''
-    as='script'></script>
-  <script>
-    window.Domestika.application_controller && window.Domestika.application_controller.application({ 'locale': 'es', 'default_locale': 'es', 'hide_signup_modal_auto': null, 'user_id': 4040779 });
-  </script>
   <script src="/router.js"></script>
 </body>
 

@@ -8,8 +8,11 @@ var LOADED_TOPIC = "ommtejidos/loaded/";
 router.hooks({
     after() {
         router.updatePageLinks();
-        hideMenu();
+        hideMenu()
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+    already(){
+        hideMenu()
     }
 });
 
