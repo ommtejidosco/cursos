@@ -93,7 +93,7 @@ function addScript(src, parent) {
 }
 
 window.addEventListener('load', (event) => {
-    createClient();
+    //createClient();
     addScript('/contact/contact.js', document.body);
     addScript('/course.js', document.body);
     addScript('/unidades.js', document.body);
