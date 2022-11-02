@@ -8,6 +8,8 @@ function createItem(course, opened) {
             href="/courses/#{id}#" data-navigo>
             <picture>
                 <img
+                width="640"
+                height="360"
                 alt="#{name}#. #{description}#"
                 loading="lazy" class=" a-placeholder a-placeholder--standalone"
                 src="#{image}#">
