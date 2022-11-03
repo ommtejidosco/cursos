@@ -101,7 +101,7 @@ function createClient() {
 
 function addScript(src, parent, async) {
     let script = document.createElement('script');
-    script.async = async;
+    script.defer = async;
     script.src = src;
     parent.appendChild(script);
 }
