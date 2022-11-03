@@ -61,6 +61,7 @@ function routeChecker(func, match){
         clearInterval(checker[func])
         checker[func] = undefined;
         executeFunctionByName(func, window, match)
+        router.updatePageLinks();
     }else if(!checker[func]){
         checker[func] = setInterval(routeChecker, 250, func, match)
         loader[func].forEach((module) => addScript(module, document.body, true))
