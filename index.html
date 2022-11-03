@@ -181,6 +181,45 @@
         overflow-y: hidden;
       }
     }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes loader-animation {
+      0%, 100% {
+        width: 0%;
+      }
+
+      25%, 75% {
+        left: 0%;
+        width: 100%;
+      }
+
+      50% {
+        left: 100%;
+        width: 0%;
+      }
+    }
+
+    .loader {
+      height: 5px;
+      width: 100%;
+    }
+
+    .loader .bar {
+      position: fixed;
+      z-index: 1000;
+      height: 4px;
+      top: 50px;
+      border-radius: 2px;
+      background-color: #80543c;
+      animation-name: loader-animation;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
   </style>
 </head>
 
@@ -215,8 +254,12 @@
         </div>
       </div>
     </div>
+    <div class="loader">
+      <div id="loading-bar"></div>
+    </div>
   </header>
   <script>
+    let loadingStarted = 0;
     function hideMenu() {
       document.getElementById('nav-check').checked = false;
       document.body.classList.remove('no-scroll')
@@ -225,6 +268,16 @@
       document.body.classList.toggle('no-scroll')
     })
     document.getElementsByClassName('nav-hover')[0].addEventListener('click', hideMenu)
+    function showLoadingBar(){
+      loadingStarted = new Date().getTime();
+      document.getElementById('loading-bar').classList.add('bar');
+    }
+    function hideLoadingBar(){
+      let now = new Date().getTime();
+      let executionTime = (now - loadingStarted) % 3000
+      if(executionTime > 1500) document.getElementById('loading-bar').classList.remove('bar');
+      else setTimeout(hideLoadingBar, 1500 - executionTime)
+    }
   </script>
   <script>
     function getFunctionByName(functionName, context) {
@@ -286,4 +339,5 @@
   </footer>
   <script src="/router.js"></script>
 </body>
+
 </html>

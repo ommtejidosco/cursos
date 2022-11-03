@@ -58,11 +58,13 @@ function redirect(match){
 
 function routeChecker(func, match){
     if(getFunctionByName(func, window)){
+        hideLoadingBar()
         clearInterval(checker[func])
         checker[func] = undefined;
         executeFunctionByName(func, window, match)
         router.updatePageLinks();
     }else if(!checker[func]){
+        showLoadingBar()
         checker[func] = setInterval(routeChecker, 250, func, match)
         loader[func].forEach((module) => addScript(module, document.body, true))
     }
