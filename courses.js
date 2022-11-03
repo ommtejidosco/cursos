@@ -72,3 +72,5 @@ function coursesRoute(match) {
           router.updatePageLinks()
       })
 }
+
+window.coursesRoute = coursesRoute

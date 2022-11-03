@@ -38,6 +38,12 @@
       box-sizing: border-box;
     }
 
+    @media(min-width: 768px) {
+      .region__title {
+        margin-left: 35px;
+      }
+    }
+
     .navbar {
       height: 50px;
       width: 100%;
@@ -220,6 +226,22 @@
     })
     document.getElementsByClassName('nav-hover')[0].addEventListener('click', hideMenu)
   </script>
+  <script>
+    function getFunctionByName(functionName, context) {
+      let namespaces = functionName.split(".");
+      let func = namespaces.pop();
+      for (var i = 0; i < namespaces.length; i++) {
+        context = context[namespaces[i]];
+      }
+      return context[func];
+    }
+
+    function executeFunctionByName(functionName, context, args) {
+      let funcArgs = Array.prototype.slice.call(arguments, 2);
+      let func = getFunctionByName(functionName, context)
+      if (func) return func.apply(context, funcArgs);
+    }
+  </script>
   <main class='js-main-content' id='main-content' role='main'>
     <div class='content-nav content-nav--light d-none d-md-block'>
       <nav aria-label='breadcrumb' class='container'>
@@ -235,7 +257,7 @@
     <!--<script src="/unidades.js"></script>-->
     <!--<script src="/unidades-mobile.js"></script>-->
     <!-- Inicio cursos -->
-    <script src="/courses.js"></script>
+    <!--<script src="/courses.js"></script>-->
     <!-- Fin cursos -->
     <!-- Inicio curso -->
     <!--<script src="/course.js"></script>-->

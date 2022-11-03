@@ -4,7 +4,7 @@ var reconnecTimeout = 2000;
 var host = "test.mosquitto.org";
 var port = 8081;
 var LOADED_TOPIC = "ommtejidos/loaded/";
-let checker;
+let checker = {};
 
 router.hooks({
     after() {
@@ -34,25 +34,30 @@ function breadCon(courseId, courseName, unitName) {
         breadcrumb.appendChild(unitLi);
     }
 }
-router.on("/", coursesRoute)
-    .on("/index.html", coursesRoute)
+router.on("/", function(match){
+        routeChecker('coursesRoute', match)
+    })
+    .on("/index.html", function(match){
+        routeChecker('coursesRoute', match)
+    })
     .on("/courses", redirect)
-    .on("/courses/:id", routeChecker)
-    .on("/courses/:id/units/:unit", routeChecker);
+    .on("/courses/:id", function(match){
+        routeChecker('openCourse', match)
+    })
+    .on("/courses/:id/units/:unit", function(match){
+        routeChecker('openCourse', match)
+    });
 
 function redirect(match){
     router.navigate('/');
 }
 
-function routeChecker(match){
-    if(window.openCourse) window.openCourse(match)
-    else checker = setInterval(check, 300, match)
-}
-function check(match){
-    if(window.openCourse){
-        window.openCourse(match)
-        clearInterval(checker)
-    }
+function routeChecker(func, match){
+    if(getFunctionByName(func, window)){
+        clearInterval(checker[func])
+        checker[func] = undefined;
+        executeFunctionByName(func, window, match)
+    }else if(!checker[func]) checker[func] = setInterval(routeChecker, 250, func, match)
 }
 
 function sendMessage(topic, msg) {
@@ -88,6 +93,7 @@ function createClient() {
 
 function addScript(src, parent) {
     let script = document.createElement('script');
+    script.async = true;
     script.src = src;
     parent.appendChild(script);
 }
@@ -95,6 +101,7 @@ function addScript(src, parent) {
 window.addEventListener('load', (event) => {
     //createClient();
     addScript('/contact/contact.js', document.body);
+    addScript('/courses.js', document.body);
     addScript('/course.js', document.body);
     addScript('/unidades.js', document.body);
     addScript('/unidades-mobile.js', document.body);
