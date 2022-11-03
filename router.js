@@ -7,7 +7,7 @@ var LOADED_TOPIC = "ommtejidos/loaded/";
 let checker = {};
 let loader = {
     'coursesRoute': ['/courses.js'],
-    'openCourse': ['/course.js', '/unidades.js', '/unidades-mobile.js']
+    'openCourse': ['/unidades.js', '/unidades-mobile.js', '/course.js']
 }
 
 router.hooks({
