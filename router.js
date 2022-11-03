@@ -5,6 +5,10 @@ var host = "test.mosquitto.org";
 var port = 8081;
 var LOADED_TOPIC = "ommtejidos/loaded/";
 let checker = {};
+let loader = {
+    'coursesRoute': ['/courses.js'],
+    'openCourse': ['/course.js', '/unidades.js', '/unidades-mobile.js']
+}
 
 router.hooks({
     after() {
@@ -57,7 +61,10 @@ function routeChecker(func, match){
         clearInterval(checker[func])
         checker[func] = undefined;
         executeFunctionByName(func, window, match)
-    }else if(!checker[func]) checker[func] = setInterval(routeChecker, 250, func, match)
+    }else if(!checker[func]){
+        checker[func] = setInterval(routeChecker, 250, func, match)
+        loader[func].forEach((module) => addScript(module, document.body, true))
+    }
 }
 
 function sendMessage(topic, msg) {
@@ -91,19 +98,14 @@ function createClient() {
     mqtt.connect(options);
 };
 
-function addScript(src, parent) {
+function addScript(src, parent, async) {
     let script = document.createElement('script');
-    script.async = true;
+    script.async = async;
     script.src = src;
     parent.appendChild(script);
 }
 
 window.addEventListener('load', (event) => {
-    //createClient();
-    addScript('/contact/contact.js', document.body);
-    addScript('/courses.js', document.body);
-    addScript('/course.js', document.body);
-    addScript('/unidades.js', document.body);
-    addScript('/unidades-mobile.js', document.body);
     router.resolve();
+    addScript('/contact/contact.js', document.body, false);
 });
