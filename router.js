@@ -7,7 +7,7 @@ var LOADED_TOPIC = "ommtejidos/loaded/";
 let checker = {};
 let loader = {
     'coursesRoute': ['/courses.js'],
-    'openCourse': ['/unidades.js', '/unidades-mobile.js', '/course.js']
+    'openCourse': ['/course.js']
 }
 
 router.hooks({
@@ -34,8 +34,7 @@ function breadCon(courseId, courseName, unitName) {
         let unitLi = document.createElement('li');
         unitLi.id = 'unit-bread';
         unitLi.innerHTML = unitName;
-        breadcrumb.appendChild(courseLi);
-        breadcrumb.appendChild(unitLi);
+        breadcrumb.append(courseLi, unitLi);
     }
 }
 router.on("/", function(match){
@@ -103,12 +102,12 @@ function createClient() {
 
 function addScript(src, parent, async) {
     let script = document.createElement('script');
-    script.defer = async;
+    script.async = async;
     script.src = src;
     parent.appendChild(script);
 }
 
 window.addEventListener('load', (event) => {
     router.resolve();
-    addScript('/contact/contact.js', document.body, false);
+    addScript('/contact/contact.js', document.body, true);
 });
