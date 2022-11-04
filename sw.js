@@ -14,10 +14,6 @@ self.addEventListener('install', function (event) {
   );
 });
 
-function networkOnly(event){
-  return fetch(event.request)
-}
-
 /* Network first */
 function networkFirst(event) {
   event.respondWith(
@@ -65,7 +61,7 @@ self.addEventListener('fetch', function (event) {
     || event.request.url.includes('courses/espejo-renacer.webp'))
     return cacheFirst(event);
   else if (event.request.url.includes('.mp4')) {
-    return networkOnly(event)
+    return;
   } else
     return networkFirst(event);
 });
