@@ -115,7 +115,7 @@ function showInitialGreeting(){
     window.verifyResponse(account).then(r => {
         userName = r.payload.name;
         showGreeting('Hola, '+userName.split(' ')[0]+'!');
-    })
+    }).catch(err => console.log(err))
 }
 
 function showGreeting(greeting){

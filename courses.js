@@ -103,7 +103,7 @@ function coursesRoute(match) {
           courseList(r.payload.courses)
           breadCon()
           router.updatePageLinks()
-      })
+      }).catch(err => console.log(err))
 }
 
 window.coursesRoute = coursesRoute
