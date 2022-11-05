@@ -22,6 +22,10 @@ function openUnit(course, selectedUnit) {
   createUnitList(course.id, course.units, unit, unidadMobile).forEach(element => {
     mobileUnits.appendChild(element);
   });
+  let videos = document.getElementsByTagName('video')
+  for(let v=0; v < videos.length; v++){
+    videos[v].preload = "metadata";
+  }
   localStorage.setItem(course.id + '-opened', new Date())
 }
 
