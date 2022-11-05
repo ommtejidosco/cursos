@@ -45,7 +45,7 @@ function cacheFirst(event) {
 }
 
 async function fetchWithTimeout(request, options = {}) {
-  const { timeout = 5000 } = options;
+  const { timeout = 8000 } = options;
   const controller = new AbortController();
   const id = setTimeout(() => {console.log('Timeout'); controller.abort();}, timeout);
   const response = await fetch(request, {

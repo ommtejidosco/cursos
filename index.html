@@ -188,11 +188,14 @@
     }
 
     @keyframes loader-animation {
-      0%, 100% {
+
+      0%,
+      100% {
         width: 0%;
       }
 
-      25%, 75% {
+      25%,
+      75% {
         left: 0%;
         width: 100%;
       }
@@ -221,7 +224,7 @@
       animation-timing-function: ease-in-out;
     }
 
-    .soon::after{
+    .soon::after {
       content: "Próximamente";
       color: #fff;
       font-weight: 650;
@@ -233,6 +236,9 @@
       right: -2%;
     }
 
+    .d-lg-block {
+      display: block !important
+    }
   </style>
 </head>
 
@@ -256,12 +262,11 @@
         <a href='/' data-navigo>Mis cursos</a>
       </div>
       <div class="nav-hover"></div>
-      <div class='mr-lg-left'>
+      <div class='mr-lg-left' style="padding-right: 10px;">
         <div class='user-nav'>
           <ul class='clearfix loggedin loggedin--left'>
-            <li class='my-courses d-none d-lg-block'>
-              <a class='js-amplitude-track' href='/courses' data-navigo>Mis cursos
-              </a>
+            <li class='my-courses d-lg-block'>
+              <a id="greeting"></a>
             </li>
           </ul>
         </div>
@@ -281,14 +286,14 @@
       document.body.classList.toggle('no-scroll')
     })
     document.getElementsByClassName('nav-hover')[0].addEventListener('click', hideMenu)
-    function showLoadingBar(){
+    function showLoadingBar() {
       loadingStarted = new Date().getTime();
       document.getElementById('loading-bar').classList.add('bar');
     }
-    function hideLoadingBar(){
+    function hideLoadingBar() {
       let now = new Date().getTime();
       let executionTime = (now - loadingStarted) % 3000
-      if(executionTime > 1500) document.getElementById('loading-bar').classList.remove('bar');
+      if (executionTime > 1500) document.getElementById('loading-bar').classList.remove('bar');
       else setTimeout(hideLoadingBar, 1500 - executionTime)
     }
   </script>

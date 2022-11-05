@@ -9,6 +9,7 @@ let loader = {
     'coursesRoute': ['/courses.js'],
     'openCourse': ['/course.js']
 }
+let userName = '';
 
 router.hooks({
     after() {
@@ -46,9 +47,11 @@ router.on("/", function(match){
     .on("/courses", redirect)
     .on("/courses/:id", function(match){
         routeChecker('openCourse', match)
+        showGreeting(userName.split(' ')[0])
     })
     .on("/courses/:id/units/:unit", function(match){
         routeChecker('openCourse', match)
+        showGreeting(userName.split(' ')[0])
     });
 
 function redirect(match){
@@ -107,7 +110,20 @@ function addScript(src, parent, async) {
     parent.appendChild(script);
 }
 
+function showInitialGreeting(){
+    let account = localStorage.getItem('account')
+    window.verifyResponse(account).then(r => {
+        userName = r.payload.name;
+        showGreeting('Hola, '+userName.split(' ')[0]+'!');
+    })
+}
+
+function showGreeting(greeting){
+    document.getElementById('greeting').innerHTML = greeting;
+}
+
 window.addEventListener('load', (event) => {
     router.resolve();
+    showInitialGreeting();
     addScript('/contact/contact.js', document.body, true);
 });

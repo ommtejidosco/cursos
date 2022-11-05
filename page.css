@@ -1002,13 +1002,6 @@ a.bg-dark:hover {
     }
 }
 
-@media(min-width:992px) {
-
-    .d-lg-block {
-        display: block !important
-    }
-}
-
 .flex-column {
     flex-direction: column !important
 }
