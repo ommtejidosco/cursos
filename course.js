@@ -54,7 +54,7 @@ function selectUnit(course, unit) {
 function openCourse(match) {
   let course = JSON.parse(localStorage.getItem(match.data.id))
   if (course) openUnit(course, selectUnit(course, match.data.unit))
-  else router.navigate('/courses')
+  else router.navigate('/')
 }
 
 window.openCourse = openCourse;

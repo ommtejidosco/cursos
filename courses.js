@@ -57,42 +57,17 @@ function courseList(courses) {
     </div>
   </div>
 </div>`;
-  let soon = `<li class="paper paper--shadowless course-item">
-  <div class="paper__body">
-    <div class="row">
-      <div class="col-sm-5 col-md-4">
-        <a class="course-item__image soon"
-          title="Llavero Amanecer. Un curso de Laura Duque González" data-navigo>
-          <picture>
-              <img
-              width="640"
-              height="360"
-              alt="Llavero Amanecer. Un curso de Laura Duque González"
-              class=" a-placeholder a-placeholder--standalone"
-              src="/courses/llavero-amanecer-2.webp">
-          </picture>
-        </a>
-      </div>
-      <div class="col-sm-7 col-md-8">
-        <div class="course-item__body">
-          <div class="course-item__body__header">
-            <h3 class="h2 course-item__title">
-              <a data-navigo>Llavero Amanecer</a>
-            </h3>
-            <p class="course-item__teacher">
-              Un curso de Laura Duque González
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</li>`;
-  
+  let pending = {
+    "id": "llavero-amanecer",
+    "version": "1.0",
+    "name": "Llavero Amanecer",
+    "description": "Un curso de Laura Duque González",
+    "image": "/courses/llavero-amanecer-2.webp"
+  }
+  if(courses.filter(course => course.id == pending.id).length == 0) courses.splice(1,0,pending)
   let courseItems = courses.map((element) => {
     return createItem(element, localStorage.getItem(element.id+'-opened')?true:false)
   });
-  courseItems.splice(1, 0, soon)
   document.getElementById('content').innerHTML = template.replaceAll('#{courses}#', courseItems.join(''))
 }
 
