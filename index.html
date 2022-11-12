@@ -239,6 +239,68 @@
     .d-lg-block {
       display: block !important
     }
+
+    [class*=" a-icon-"],
+    [class^=a-icon-] {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      font: normal normal normal 14px/1 predencio-icons;
+      font-size: inherit;
+      color: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale
+    }
+
+    .a-icon-facebook-min:before,
+    .a-icon-instagram:before,
+    .a-icon-menu--heavy:before,
+    .a-icon-arrow-right:before {
+      content: "\00a0";
+      position: absolute;
+      background-repeat: no-repeat;
+    }
+
+    .a-icon-arrow-right:before {
+      width: 15px;
+      right: 10px;
+      background-size: cover;
+      background-image: url(/right-arrow.svg);
+      filter: invert(96%) sepia(0%) saturate(7488%) hue-rotate(57deg) brightness(100%) contrast(113%);
+    }
+
+    @media(max-width:767.98px) {
+      .a-button.a-button--hollow .a-icon-arrow-right:before {
+        right: auto;
+      }
+    }
+
+    .a-icon-facebook-min:before {
+      width: 15px;
+      background-image: url(/facebook.svg);
+    }
+
+    .a-icon-instagram:before {
+      width: 20px;
+      height: 20px;
+      top: 6px;
+      left: 6px;
+      background-image: url(/instagram.svg);
+      background-size: cover;
+    }
+
+    .a-icon-menu--heavy:before {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      margin-left: 2px;
+      background-image: url(/menu.svg);
+    }
+
+    .a-button.a-button--hollow .a-icon-arrow-right:before {
+      filter: invert(31%) sepia(72%) saturate(330%) hue-rotate(337deg) brightness(94%) contrast(88%);
+    }
   </style>
 </head>
 

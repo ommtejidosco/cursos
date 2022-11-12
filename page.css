@@ -237,40 +237,6 @@
     }
 }
 
-@font-face {
-    font-family: predencio-icons;
-    src: url(/predencio-icons-a665fd8c5e909a153ffb620277a4186e.woff2) format("woff2"), url(https://cdn.domestika.org/raw/upload/packs/media/fonts/predencio-icons-ff09e81fc6281318d79501069496f718.woff) format("woff"), url(https://cdn.domestika.org/raw/upload/packs/media/fonts/predencio-icons-771a54a7a550a3e5eed000af0a61bf4f.ttf) format("truetype")
-}
-
-[class*=" a-icon-"],
-[class^=a-icon-] {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    font: normal normal normal 14px/1 predencio-icons;
-    font-size: inherit;
-    color: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
-
-.a-icon-arrow-right:before {
-    content: ""
-}
-
-.a-icon-facebook-min:before {
-    content: ""
-}
-
-.a-icon-instagram:before {
-    content: ""
-}
-
-.a-icon-menu--heavy:before {
-    content: ""
-}
-
 :root {
     --blue: #257aa0;
     --blue-light: #3b5998;
@@ -2258,50 +2224,50 @@ i {
 }
 
 .a-button.a-button--primary {
-    background-color: #EBA390;
+    background-color: #80543c;
     color: #fff
 }
 
 .a-button.a-button--primary:visited {
-    background-color: #EBA390;
+    background-color: #80543c;
     color: #fff
 }
 
 .a-button.a-button--primary:active {
-    background-color: #EBA390;
+    background-color: #80543c;
     color: #fff
 }
 
 .a-button.a-button--primary:focus,
 .a-button.a-button--primary:hover {
-    background-color: #EBA390;
+    background-color: #80543c;
     color: #fff
 }
 
 .a-button.a-button--primary.a-button--hollow {
     transition: color .25s ease-in-out, box-shadow .25s ease-in-out, background-color .25s ease-in-out;
     background-color: transparent;
-    color: #EBA390;
-    box-shadow: inset 0 0 0 .125rem #EBA390
+    color: #80543c;
+    box-shadow: inset 0 0 0 .125rem #80543c
 }
 
 .a-button.a-button--primary.a-button--hollow:visited {
     background-color: transparent;
-    color: #EBA390;
-    box-shadow: inset 0 0 0 .125rem #EBA390
+    color: #80543c;
+    box-shadow: inset 0 0 0 .125rem #80543c
 }
 
 .a-button.a-button--primary.a-button--hollow:active {
     background-color: transparent;
-    color: #EBA390;
-    box-shadow: inset 0 0 0 .125rem #EBA390
+    color: #80543c;
+    box-shadow: inset 0 0 0 .125rem #80543c
 }
 
 .a-button.a-button--primary.a-button--hollow:focus,
 .a-button.a-button--primary.a-button--hollow:hover {
     background-color: transparent;
-    color: #EBA390;
-    box-shadow: inset 0 0 0 .125rem #EBA390
+    color: #80543c;
+    box-shadow: inset 0 0 0 .125rem #80543c
 }
 
 @media(min-width:768px) {
