@@ -188,21 +188,15 @@
     }
 
     @keyframes loader-animation {
-
-      0%,
-      100% {
-        width: 0%;
+      0%, 100% {
+        transform: translateX(-100%);
       }
-
-      25%,
-      75% {
-        left: 0%;
-        width: 100%;
+      25%, 75%{
+        transform: translateX(0%);
       }
-
+      
       50% {
-        left: 100%;
-        width: 0%;
+        transform: translateX(100%);
       }
     }
 
@@ -215,6 +209,7 @@
       position: fixed;
       z-index: 1000;
       height: 4px;
+      width: 100%;
       top: 50px;
       border-radius: 2px;
       background-color: #80543c;

@@ -1,8 +1,9 @@
 @font-face {
     font-family: 'FontAwesome';
+    font-display: swap;
     src: url("/resources/fontawesome-webfont-2adefcbc041e7d18fcf2d417879dc5a09997aa64d675b7a3c4b6ce33da13f3fe.woff2") format("woff2");
     font-weight: normal;
-    font-style: normal
+    font-style: normal;
 }
 
 .sr-only {
