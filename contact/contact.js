@@ -8,6 +8,7 @@ function loadComponentStyle(){
 function createComponent(){
     let isMobile = window.matchMedia("(any-pointer:coarse)").matches;
     let contactElement = document.createElement('a');
+    contactElement.ariaLabel = 'Inicia la conversación en whatsapp';
     contactElement.href = (isMobile?'whatsapp://':'https://api.whatsapp.com/') + 'send?phone=573176826533';
     contactElement.target = '_blank';
     contactElement.innerHTML = `<div class='contact'></div>`;
