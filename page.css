@@ -843,12 +843,7 @@ select.form-control:focus::-ms-value {
 }
 
 
-.breadcrumb>li+li:before {
-    display: inline-block;
-    padding-right: 0;
-    color: #848484;
-    content: ""
-}
+
 
 
 .breadcrumb>li+li:hover:before {
@@ -1472,14 +1467,6 @@ a .avatar:hover {
     font-weight: 400
 }
 
-.breadcrumb>li+li:before {
-    display: inline-block;
-    padding: 0 9px 0 11px;
-    font-family: FontAwesome;
-    font-size: 1.125rem;
-    transform: translateY(1px)
-}
-
 .content-nav .breadcrumb {
     margin: 0;
     line-height: 36px
@@ -1493,10 +1480,6 @@ a .avatar:hover {
 
 .content-nav--light .breadcrumb>li {
     color: #848484
-}
-
-.content-nav--light .breadcrumb>li+li:before {
-    color: #b0b0b0
 }
 
 .btn-toolbar {

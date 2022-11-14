@@ -188,13 +188,17 @@
     }
 
     @keyframes loader-animation {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateX(-100%);
       }
-      25%, 75%{
+
+      25%,
+      75% {
         transform: translateX(0%);
       }
-      
+
       50% {
         transform: translateX(100%);
       }
@@ -295,6 +299,31 @@
 
     .a-button.a-button--hollow .a-icon-arrow-right:before {
       filter: invert(31%) sepia(72%) saturate(330%) hue-rotate(337deg) brightness(94%) contrast(88%);
+    }
+
+    .fa-clock-o:before {
+      position: relative;
+      content: "\00a0";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background-size: cover;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%0A%3E%3Ccircle cx='12' cy='12' r='10' /%3E%3Cpolyline points='12 6 12 12 7.5 12' /%3E%3C/svg%3E%0A");
+      filter: invert(53%) sepia(23%) saturate(0%) hue-rotate(63deg) brightness(94%) contrast(90%);
+    }
+
+    .breadcrumb>li+li:before {
+      content: "\00a0";
+      position: relative;
+      display: inline-block;
+      padding: 0 9px 0 11px;
+      height: 10px;
+      top: 20px;
+      left: 5px;
+      background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 330 330' style='enable-background:new 0 0 330 330;' xml:space='preserve'%3E%3Cpath id='XMLID_222_' d='M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001 c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213 C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606 C255,161.018,253.42,157.202,250.606,154.389z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      filter: invert(77%) sepia(0%) saturate(616%) hue-rotate(139deg) brightness(93%) contrast(89%);
     }
   </style>
 </head>
