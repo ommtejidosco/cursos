@@ -150,4 +150,5 @@ window.addEventListener('load', (event) => {
     updateProfile();
     showInitialGreeting();
     addScript('/contact/contact.js', document.body, true);
+    if(localStorage.getItem('AuthId')) addScript('/installable.js', document.body,true);
 });
