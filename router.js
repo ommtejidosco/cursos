@@ -133,7 +133,7 @@ async function showInitialGreeting(){
         lastName = names.length > 2? names[2]:names[1];
         dayTime()
         let greeting = getRandomInt(0,2) == 0?'Hola':dayTime()
-        showGreeting(greeting+', '+userName+'!');
+        showGreeting('¡'+greeting+', '+userName+'!');
     }).catch(err => console.log(err))
 }
 
@@ -150,5 +150,5 @@ window.addEventListener('load', (event) => {
     updateProfile();
     showInitialGreeting();
     addScript('/contact/contact.js', document.body, true);
-    if(localStorage.getItem('AuthId')) addScript('/installable.js', document.body,true);
+    if(localStorage.getItem('AuthId')) addScript('/install.js', document.body,true);
 });
