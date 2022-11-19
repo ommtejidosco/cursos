@@ -58,7 +58,8 @@ async function fetchWithTimeout(request, options = {}) {
 
 self.addEventListener('fetch', function (event) {
   if (event.request.url.includes('resources')
-    || event.request.url.includes('courses/espejo-renacer.webp'))
+    || event.request.url.includes('courses/espejo-renacer.webp')
+    || event.request.url.includes('courses/llavero-amanecer-2.webp'))
     return cacheFirst(event);
   else if (event.request.url.includes('.mp4')) {
     return;
