@@ -24,11 +24,11 @@ router.on("/", function (match) {
     .on("/courses", redirect)
     .on("/courses/:id", function (match) {
         routeChecker('openCourse', match)
-        showName()
+        window.dispatchEvent(new Event('showName'))
     })
     .on("/courses/:id/units/:unit", function (match) {
         routeChecker('openCourse', match)
-        showName()
+        window.dispatchEvent(new Event('showName'))
     });
 
 function redirect(match) {

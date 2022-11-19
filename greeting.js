@@ -27,6 +27,5 @@ function dayTime() {
     return time <= 720 ? 'Buenos días' : time <= 1080 ? 'Buenas tardes' : 'Buenas noches';
 }
 
-window.addEventListener('load', (event) => {
-    showInitialGreeting();
-})
+window.addEventListener('load', showInitialGreeting)
+window.addEventListener('showName', showName)
