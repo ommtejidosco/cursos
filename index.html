@@ -3195,40 +3195,26 @@
     </div>
   </header>
   <script>
-    let loadingStarted = 0;
+    let navBtn = document.getElementById('nav-check');
+    let navHover = document.getElementsByClassName('nav-hover')[0];
     function hideMenu() {
-      document.getElementById('nav-check').checked = false;
-      document.body.classList.remove('no-scroll')
+      navBtn.checked = false;
+      document.body.classList.remove('no-scroll');
     }
-    document.getElementById('nav-check').addEventListener('click', () => {
+    navBtn.addEventListener('click', () => {
       document.body.classList.toggle('no-scroll')
     })
-    document.getElementsByClassName('nav-hover')[0].addEventListener('click', hideMenu)
+    navHover.addEventListener('click', hideMenu)
+    let ldngStarted = 0;
+    let ldngBar = document.getElementById('loading-bar');
     function showLoadingBar() {
-      loadingStarted = new Date().getTime();
-      document.getElementById('loading-bar').classList.add('bar');
+      ldngStarted = new Date().getTime();
+      ldngBar.classList.add('bar');
     }
     function hideLoadingBar() {
-      let now = new Date().getTime();
-      let executionTime = (now - loadingStarted) % 3000
-      if (executionTime > 1500) document.getElementById('loading-bar').classList.remove('bar');
+      let executionTime = (new Date().getTime() - ldngStarted) % 3000;
+      if (executionTime > 1500) ldngBar.classList.remove('bar');
       else setTimeout(hideLoadingBar, 1500 - executionTime)
-    }
-  </script>
-  <script>
-    function getFunctionByName(functionName, context) {
-      let namespaces = functionName.split(".");
-      let func = namespaces.pop();
-      for (var i = 0; i < namespaces.length; i++) {
-        context = context[namespaces[i]];
-      }
-      return context[func];
-    }
-
-    function executeFunctionByName(functionName, context, args) {
-      let funcArgs = Array.prototype.slice.call(arguments, 2);
-      let func = getFunctionByName(functionName, context)
-      if (func) return func.apply(context, funcArgs);
     }
   </script>
   <main class='js-main-content' id='main-content' role='main'>
@@ -3244,6 +3230,24 @@
     <div id="content">
     </div>
   </main>
+  <script>
+    function breadCon(courseId, courseName, unitName) {
+      let breadcrumb = document.getElementsByClassName('breadcrumb')[0];
+      let courseBread = document.getElementById('course-bread')
+      let unitBread = document.getElementById('unit-bread')
+      if (courseBread) breadcrumb.removeChild(courseBread)
+      if (unitBread) breadcrumb.removeChild(unitBread)
+      if (courseId && courseName && unitName) {
+        let courseLi = document.createElement('li');
+        courseLi.id = 'course-bread';
+        courseLi.innerHTML = `<a href='/courses/` + courseId + `' data-navigo>` + courseName + `</a>`;
+        let unitLi = document.createElement('li');
+        unitLi.id = 'unit-bread';
+        unitLi.innerHTML = unitName;
+        breadcrumb.append(courseLi, unitLi);
+      }
+    }
+  </script>
   <footer class='site-footer' id='site-footer'>
     <div class='footer-corp t-footer-corp'>
       <div class='container'>
@@ -3273,6 +3277,8 @@
     </div>
 
   </footer>
+  <script defer src="/core.js"></script>
+  <script defer src="/greeting.js"></script>
   <script defer src="/router.js"></script>
 </body>
 
