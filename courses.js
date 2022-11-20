@@ -75,9 +75,9 @@ function coursesRoute(match) {
   let account = localStorage.getItem('account')
   window.verifyResponse(account)
       .then(r => {
+          emitEvent('breadCon')
           courseList(r.payload.courses)
-          breadCon()
-          router.updatePageLinks()
+          emitEvent('updatePageLinks')
       }).catch(err => console.log(err))
 }
 

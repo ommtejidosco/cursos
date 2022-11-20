@@ -6,49 +6,54 @@ let component = {
 
 router.hooks({
     after() {
+        emitEvent('hideMenu')
         router.updatePageLinks();
-        hideMenu()
         window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     already() {
-        hideMenu()
+        emitEvent('hideMenu')
     }
 });
 
-router.on("/", function (match) {
-    routeChecker('coursesRoute', match)
-})
-    .on("/index.html", function (match) {
-        routeChecker('coursesRoute', match)
-    })
+router.on("/", coursesRouter)
+    .on("/index.html", coursesRouter)
     .on("/courses", redirect)
-    .on("/courses/:id", function (match) {
-        routeChecker('openCourse', match)
-        window.dispatchEvent(new Event('showName'))
-    })
-    .on("/courses/:id/units/:unit", function (match) {
-        routeChecker('openCourse', match)
-        window.dispatchEvent(new Event('showName'))
-    });
+    .on("/courses/:id",courseRouter)
+    .on("/courses/:id/units/:unit", courseRouter);
 
 function redirect(match) {
     router.navigate('/');
 }
 
-function routeChecker(func, match) {
-    loadComponent(component[func], func, window, match, showLoadingBar, ()=>{
-        hideLoadingBar();
-        router.updatePageLinks();
-    })
+function coursesRouter(match) {
+    routeLoader('coursesRoute', match)
 }
 
-async function updateProfile() {
-    if (localStorage.getItem('AuthId') && !localStorage.getItem('llavero-amanecer')) addScript('/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
-    router.resolve();
+function courseRouter(match) {
+    routeLoader('openCourse', match)
+    emitEvent('showName')
+}
+
+function routeLoader(route, match) {
+    loadComponent(component[route], route, window, match,
+        ()=> emitEvent('showLoadingBar'),
+        () => {
+            emitEvent('hideLoadingBar')
+            router.updatePageLinks();
+        })
+}
+
+function navigate(e) {
+    router.navigate(e.detail[0])
+}
+
+function updatePageLinks(e) {
+    router.updatePageLinks()
 }
 
 window.addEventListener('load', (event) => {
-    updateProfile();
-    addScript('/contact/contact.js', document.body, true);
-    if (localStorage.getItem('AuthId')) addScript('/install.js', document.body, true);
+    router.resolve();
 });
+
+window.addEventListener('routerNavigate', navigate)
+window.addEventListener('updatePageLinks', updatePageLinks)

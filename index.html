@@ -3216,6 +3216,9 @@
       if (executionTime > 1500) ldngBar.classList.remove('bar');
       else setTimeout(hideLoadingBar, 1500 - executionTime)
     }
+    window.addEventListener('hideMenu', hideMenu);
+    window.addEventListener('showLoadingBar', showLoadingBar);
+    window.addEventListener('hideLoadingBar', hideLoadingBar);
   </script>
   <main class='js-main-content' id='main-content' role='main'>
     <div class='content-nav content-nav--light d-none d-md-block'>
@@ -3247,6 +3250,7 @@
         breadcrumb.append(courseLi, unitLi);
       }
     }
+    window.addEventListener('breadCon', (e) => breadCon.apply(this, e.detail));
   </script>
   <footer class='site-footer' id='site-footer'>
     <div class='footer-corp t-footer-corp'>
@@ -3280,6 +3284,13 @@
   <script defer src="/core.js"></script>
   <script defer src="/greeting.js"></script>
   <script defer src="/router.js"></script>
+  <script>
+    window.addEventListener('load', (event) => {
+      updateProfile();
+      addScript('/contact/contact.js', document.body, true);
+      if (localStorage.getItem('AuthId')) addScript('/install.js', document.body, true);
+    });
+  </script>
 </body>
 
 </html>

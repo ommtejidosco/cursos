@@ -1,6 +1,6 @@
 function changeUnit() {
   let value = document.getElementById("js-course-course-select-navigation").value;
-  if (value && value != "") router.navigate(value)
+  if (value && value != "") emitEvent('routerNavigate', value)
 }
 
 function courseContent(id, name, content, teacher) {
@@ -15,13 +15,14 @@ function courseContent(id, name, content, teacher) {
 
 function openUnit(course, selectedUnit) {
   let unit = course.units[selectedUnit].id;
-  breadCon(course.id, course.name, course.units[selectedUnit].name);
+  emitEvent('breadCon', course.id, course.name, course.units[selectedUnit].name);
   document.getElementById('content').innerHTML = courseContent(course.id, course.name, course.units[selectedUnit].content, course.teacher);
   document.getElementById('menu-unidades').innerHTML = createUnitList(course.id, course.units, unit, unidad).join('')
   let mobileUnits = document.getElementById('js-course-course-select-navigation')
   createUnitList(course.id, course.units, unit, unidadMobile).forEach(element => {
     mobileUnits.appendChild(element);
   });
+  emitEvent('updatePageLinks')
   localStorage.setItem(course.id + '-opened', new Date())
 }
 
@@ -54,7 +55,7 @@ function selectUnit(course, unit) {
 function openCourse(match) {
   let course = JSON.parse(localStorage.getItem(match.data.id))
   if (course) openUnit(course, selectUnit(course, match.data.unit))
-  else router.navigate('/')
+  else emitEvent('routerNavigate', '/')
 }
 
 window.openCourse = openCourse;
