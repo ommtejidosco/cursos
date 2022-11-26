@@ -34,6 +34,7 @@ function addScript(src, parent, async) {
 }
 async function updateProfile() {
     if (localStorage.getItem('AuthId') && !localStorage.getItem('llavero-amanecer')) addScript('/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
+    if (localStorage.getItem('AuthId') && !localStorage.getItem('espejo-renacer')) addScript('/RO91eBoI0HjoVMTI/qRd5dFSZmM.js', document.body, true)
 }
 function emitEvent(eventName, ...args){
     return window.dispatchEvent(new CustomEvent(eventName, {detail: args}))

@@ -64,7 +64,15 @@ function courseList(courses) {
     "description": "Un curso de Laura Duque González",
     "image": "/courses/llavero-amanecer-2.webp"
   }
+  let mirror = {
+    "id": "espejo-renacer",
+    "version": "1.0",
+    "name": "Espejo Renacer",
+    "description": "Un curso de Laura Duque González",
+    "image": "/courses/espejo-renacer.webp"
+  }
   if(courses.filter(course => course.id == pending.id).length == 0) courses.splice(1,0,pending)
+  if(courses.filter(course => course.id == mirror.id).length == 0) courses.splice(2,0,mirror)
   let courseItems = courses.map((element) => {
     return createItem(element, localStorage.getItem(element.id+'-opened')?true:false)
   });
