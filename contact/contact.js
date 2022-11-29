@@ -1,10 +1,3 @@
-function loadComponentStyle(){
-    let cest = document.createElement('link');
-    cest.href = '/contact/contact.css';
-    cest.rel = 'stylesheet';
-    document.head.appendChild(cest);
-}
-
 function createComponent(){
     let isMobile = window.matchMedia("(any-pointer:coarse)").matches;
     let contactElement = document.createElement('a');
@@ -16,7 +9,7 @@ function createComponent(){
 }
 
 function createContactElm(){
-    loadComponentStyle();
+    loadComponentStyle('/contact/contact.css');
     createComponent();
 }
 
