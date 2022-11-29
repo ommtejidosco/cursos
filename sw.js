@@ -18,8 +18,8 @@ self.addEventListener('install', function (event) {
 function networkFirst(event) {
   event.respondWith(
     fetchWithTimeout(event.request).then(function (response) {
-      return caches.open('main').then(function (cache) {
-        cache.put(event.request, response.clone());
+      return caches.open('main').then(async function (cache) {
+        cache.put(event.request, response.clone())
         return response;
       })
     }).catch(function () {
@@ -27,18 +27,31 @@ function networkFirst(event) {
     })
   )
 }
+/* Remove old versions */
+async function updateCache(cache, event, response){
+  console.time(event.request.url)
+  let keys = await cache.keys();
+  let oldVersions = keys.filter((v) => v.url.includes(event.request.url.split('?')[0]))
+  .filter((v) => v.url != event.request.url)
+  await Promise.all(oldVersions.map((k) => {
+    cache.delete(k);
+    console.log(`Deleting ${k.url} due to newer version ${event.request.url}`)
+  }));
+  cache.put(event.request, response)
+  console.timeEnd(event.request.url)
+}
+
 /* Cache first */
 function cacheFirst(event) {
   event.respondWith(
-    caches.open('main').then(function (cache) {
+    caches.open('main').then(async function (cache) {      
       return cache.match(event.request).then(function (cacheResponse) {
-        if (cacheResponse)
+        if (cacheResponse){
           return cacheResponse
-        else
-          return fetchWithTimeout(event.request).then(function (networkResponse) {
-            cache.put(event.request, networkResponse.clone())
-            return networkResponse
-          })
+        }else return fetchWithTimeout(event.request).then(async function (networkResponse) {
+          updateCache(cache, event, networkResponse.clone())
+          return networkResponse
+        })
       })
     })
   );
