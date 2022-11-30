@@ -25,12 +25,14 @@ function processVideos(){
                 }
             }, 450);
         });
+        videos[v].onplay = (event)=>{
+            videos[v].setAttribute('controls', 'true');
+            document.getElementById('options_' + videos[v].id).hidden = true;
+        }
     }
 }
 
 function playVideo(video){
-    video.setAttribute('controls', 'true');
-    document.getElementById('options_' + video.id).hidden = true;
     video.play();
 }
 
