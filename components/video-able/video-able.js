@@ -17,25 +17,28 @@ function processVideos(){
     let videos = document.getElementsByTagName('video');
     for(let v=0;v < videos.length; v++){
         videos[v].controls = false;
-        videos[v].addEventListener('pause', (event) => {
-            setTimeout(() => {
-                if (videos[v].paused) {
-                    videos[v].removeAttribute('controls');
-                    document.getElementById('options_' + videos[v].id).hidden = false;
-                }
-            }, 450);
-        });
-        videos[v].onplay = (event)=>{
-            videos[v].setAttribute('controls', 'true');
-            document.getElementById('options_' + videos[v].id).hidden = true;
-        }
+        videos[v].addEventListener('pause', pauseVideo);
+        videos[v].addEventListener('fullscreenchange', pauseVideo);
+        videos[v].addEventListener('mozfullscreenchange', pauseVideo);
+        videos[v].addEventListener('webkitfullscreenchange', pauseVideo);
     }
 }
 
 function playVideo(video){
+    video.setAttribute('controls', 'true');
+    document.getElementById('options_' + video.id).hidden = true;
     video.play();
 }
 
-loadComponentStyle('/components/video-able/video-able.css')
+function pauseVideo(event){
+    setTimeout(() => {
+        if (event.target.paused && document.fullscreenElement !== event.target) {
+            event.target.controls = false;
+            document.getElementById('options_' + event.target.id).hidden = false;
+        }
+    }, 450);
+}
 
+
+loadComponentStyle('/components/video-able/video-able.css?v=0.0.2')
 window.addEventListener('processVideos',processVideos)
