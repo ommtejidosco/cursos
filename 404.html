@@ -3258,7 +3258,7 @@
         <div class='row'>
           <div class='col-md-2 col-lg-1'>
             <div class='section socialshare'>
-              <h4>Nuestras Redes</h4>
+              <h4 style="color:#848484; font-weight: 500;">Nuestras Redes</h4>
               <ul class='list-inline networks d-none d-sm-flex'>
                 <li class='list-inline-item'>
                   <a title='Facebook' href='https://www.facebook.com/Omm-Tejidos-107061625354739'><i
@@ -3272,9 +3272,9 @@
             </div>
           </div>
         </div>
-        <ul class='legal-list'>
+        <ul class='legal-list' style="color:#848484; font-weight: 500;">
           <li>
-            <span class="copyleft">&copy;</span> Omm Tejidos 2022
+            <span class="copyleft">&copy;</span> Omm Tejidos 2022 - <span id="version"></span>
           </li>
         </ul>
       </div>
@@ -3288,6 +3288,7 @@
     window.addEventListener('load', (event) => {
       updateProfile();
       addScript('/components/contact/contact.js', document.body, true);
+      addScript('/components/version/version.js?v=0.0.0', document.body, true);
       if (localStorage.getItem('AuthId')) addScript('/install.js', document.body, true);
     });
   </script>
