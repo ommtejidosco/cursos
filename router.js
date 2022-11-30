@@ -1,7 +1,7 @@
 const router = new Navigo("/");
 let component = {
     'coursesRoute': ['/components/courses/courses.js'],
-    'openCourse': ['/components/course/course.js?v=1.0.1']
+    'openCourse': ['/components/course/course.js?v=1.0.1','/components/video-able/video-able.js?v=0.0.2']
 }
 
 router.hooks({
