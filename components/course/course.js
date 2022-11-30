@@ -17,7 +17,6 @@ function openUnit(course, selectedUnit) {
     mobileUnits.appendChild(element);
   });
   emitEvent('updatePageLinks')
-  emitEvent('processVideos')
   localStorage.setItem(course.id + '-opened', new Date())
 }
 
