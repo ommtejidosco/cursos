@@ -33,7 +33,6 @@ function addScript(src, parent, async) {
     parent.appendChild(script);
 }
 function loadComponentStyle(style){
-    console.log(style)
     let cest = document.createElement('link');
     cest.href = style;
     cest.rel = 'stylesheet';

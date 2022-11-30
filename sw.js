@@ -29,7 +29,6 @@ function networkFirst(event) {
 }
 /* Remove old versions */
 async function updateCache(cache, event, response){
-  console.time(event.request.url)
   let keys = await cache.keys();
   let oldVersions = keys.filter((v) => v.url.includes(event.request.url.split('?')[0]))
   .filter((v) => v.url != event.request.url)
@@ -38,7 +37,6 @@ async function updateCache(cache, event, response){
     console.log(`Deleting ${k.url} due to newer version ${event.request.url}`)
   }));
   cache.put(event.request, response)
-  console.timeEnd(event.request.url)
 }
 
 /* Cache first */
@@ -70,7 +68,8 @@ async function fetchWithTimeout(request, options = {}) {
 }
 
 self.addEventListener('fetch', function (event) {
-  if (event.request.url.includes('resources')
+  if (event.request.url.includes('/components/')
+    ||event.request.url.includes('resources')
     || event.request.url.includes('courses/espejo-renacer.webp')
     || event.request.url.includes('courses/llavero-amanecer-2.webp'))
     return cacheFirst(event);
