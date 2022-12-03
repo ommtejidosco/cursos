@@ -191,10 +191,8 @@ class VideoAble extends HTMLElement {
         } else if (this.videoContainer.webkitRequestFullscreen) {
             // Need this to support Safari
             this.videoContainer.webkitRequestFullscreen();
-            screen.orientation.unlock();
         } else {
             this.videoContainer.requestFullscreen();
-            screen.orientation.unlock();
         }
     }
     updateFullscreenButton = () => {
@@ -208,4 +206,4 @@ class VideoAble extends HTMLElement {
     }
 }
 customElements.define('video-able', VideoAble);
-loadComponentStyle('/components/video-able/video-able.css?v=1.0.1')
+loadComponentStyle('/components/video-able/video-able.css?v=1.0.0')

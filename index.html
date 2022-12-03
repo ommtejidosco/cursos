@@ -3286,7 +3286,6 @@
   <script defer src="/router.js"></script>
   <script>
     window.addEventListener('load', (event) => {
-      screen.orientation.lock('portrait-primary')
       updateProfile();
       addScript('/components/contact/contact.js', document.body, true);
       if (localStorage.getItem('AuthId')) addScript('/install.js', document.body, true);
