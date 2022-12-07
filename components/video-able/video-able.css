@@ -2,23 +2,14 @@
     --player-primary: #ffeee6;
 }
 
-.video-container {
-    font-family: "YouTube Noto", Roboto, Arial, Helvetica, sans-serif;
-}
-
-
-.video-container {
-    width: 100%;
-    border-radius: 4px;
-    margin: 0 auto;
+.video_elm {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    height: 100%;
 }
 
 video {
     border-radius: 4px;
+    height: 100%;
 }
 
 .video-controls {
@@ -284,4 +275,23 @@ svg {
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 50%;
+    z-index: 1;
+}
+
+.video-landscape {
+    position: absolute;
+    transform: rotate(90deg);
+    transform-origin: bottom left;
+    width: 100vh;
+    height: 100vw;
+    margin-top: -100vw;
+    object-fit: contain;
+    visibility: visible;
+}
+
+.video-landscape video {
+    position: absolute;
+    height: 100vw;
+    width: 100vh;
+    bottom: 0;
 }

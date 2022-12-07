@@ -1,7 +1,9 @@
 class VideoAble extends HTMLElement {
     connectedCallback() {
         let id = this.attributes.poster.value.replaceAll('/', '_').replaceAll('.', '_').replaceAll('-', '_');
-        this.innerHTML = `<div class="video-container" id="video-container_${id}">
+        this.rotated = false;
+        this.innerHTML = `<div id="video-container_${id}">
+        <div class="video_elm" id="video-elm_${id}">
         <div class="video_able_options" id="options_${id}">
             <div class="video_able_option_button"><div class="play_icon"></div></div>
             <div class="video_logo"></div>
@@ -40,6 +42,11 @@ class VideoAble extends HTMLElement {
               </div>
             </div>
             <div class="right-controls">
+              <button class="fullscreen-button hidden" id="rotate-button_${id}">
+                <svg>
+                  <use href="#fullscreen-rotate"></use>
+                </svg>
+              </button>
               <button class="fullscreen-button" id="fullscreen-button_${id}">
                 <svg>
                   <use href="#fullscreen"></use>
@@ -48,6 +55,7 @@ class VideoAble extends HTMLElement {
               </button>
             </div>
           </div>
+        </div>
         </div>
         </div>`;
         this.video = document.getElementById(id);
@@ -62,14 +70,15 @@ class VideoAble extends HTMLElement {
         this.volumeButton = document.getElementById(`volume-button_${id}`);
         this.volume = document.getElementById(`volume_${id}`);
         this.fullscreenButton = document.getElementById(`fullscreen-button_${id}`);
+        this.rotateButton = document.getElementById(`rotate-button_${id}`);
         this.videoContainer = document.getElementById(`video-container_${id}`);
+        this.videoElm = document.getElementById(`video-elm_${id}`);
         this.playbackIcons = this.videoContainer.querySelectorAll(`.playback-icons use`);
         this.volumeIcons = this.volumeButton.querySelectorAll('use');
         this.volumeMute = this.volumeButton.querySelector('use[href="#volume-mute"]');
         this.volumeLow = this.volumeButton.querySelector('use[href="#volume-low"]');
         this.volumeHigh = this.volumeButton.querySelector('use[href="#volume-high"]');
         this.fullscreenIcons = this.fullscreenButton.querySelectorAll('use');
-
         const videoWorks = !!document.createElement('video').canPlayType;
         if (videoWorks) {
             this.video.controls = false;
@@ -94,7 +103,10 @@ class VideoAble extends HTMLElement {
         this.volume.addEventListener('input', this.updateVolume);
         this.volumeButton.addEventListener('click', this.toggleMute);
         this.fullscreenButton.addEventListener('click', this.toggleFullScreen);
+        this.rotateButton.addEventListener('click', this.toggleRotate);
         this.videoContainer.addEventListener('fullscreenchange', this.updateFullscreenButton);
+        this.videoContainer.addEventListener('webkitfullscreenchange', this.updateFullscreenButton);
+        this.videoContainer.addEventListener('mozfullscreenchange', this.updateFullscreenButton);      
     }
     togglePlay = () => {
         if (this.video.paused || this.video.ended) {
@@ -106,6 +118,10 @@ class VideoAble extends HTMLElement {
             this.videoOptions.hidden = false;
             this.hideControls();
         }
+    }
+    toggleRotate = () => { 
+        this.videoElm.classList.toggle('video-landscape')
+        this.rotated = !this.rotated;
     }
     updatePlayButton = () => {
         this.playbackIcons.forEach((icon) => icon.classList.toggle('hidden'));
@@ -181,22 +197,40 @@ class VideoAble extends HTMLElement {
             this.volume.value = this.volume.dataset.volume;
         }
     }
+
+    isMobile = () => {
+        return window.matchMedia("(any-pointer:coarse)").matches;
+    }
     
     toggleFullScreen = () => {
         if (document.fullscreenElement) {
             document.exitFullscreen();
+            if(this.rotated) this.toggleRotate()
+            this.hideRotateButton();
         } else if (document.webkitFullscreenElement) {
             // Need this to support Safari
             document.webkitExitFullscreen();
+            if(this.rotated) this.toggleRotate()
+            this.hideRotateButton();
         } else if (this.videoContainer.webkitRequestFullscreen) {
             // Need this to support Safari
             this.videoContainer.webkitRequestFullscreen();
+            this.showRotateButton();
         } else {
             this.videoContainer.requestFullscreen();
+            this.showRotateButton();
         }
     }
     updateFullscreenButton = () => {
         this.fullscreenIcons.forEach((icon) => icon.classList.toggle('hidden'));
+        if(this.rotated) this.toggleRotate()
+        if (!document.fullscreenElement&&!document.webkitFullscreenElement) this.hideRotateButton();
+    }
+    showRotateButton = () => {
+        if(this.isMobile()) this.rotateButton.classList.remove('hidden');
+    }
+    hideRotateButton = () => {
+        this.rotateButton.classList.add('hidden');
     }
     hideControls = () => {
         this.videoControls.classList.add('hide');
@@ -206,4 +240,4 @@ class VideoAble extends HTMLElement {
     }
 }
 customElements.define('video-able', VideoAble);
-loadComponentStyle('/components/video-able/video-able.css?v=1.0.0')
+loadComponentStyle('/components/video-able/video-able.css?v=1.1.0')
