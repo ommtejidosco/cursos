@@ -203,6 +203,7 @@ class VideoAble extends HTMLElement {
     }
     
     toggleFullScreen = () => {
+        this.video.classList.toggle('video-fullscreen')
         if (document.fullscreenElement) {
             document.exitFullscreen();
             if(this.rotated) this.toggleRotate()
@@ -240,4 +241,4 @@ class VideoAble extends HTMLElement {
     }
 }
 customElements.define('video-able', VideoAble);
-loadComponentStyle('/components/video-able/video-able.css?v=1.1.0')
+loadComponentStyle('/components/video-able/video-able.css?v=1.1.1')

@@ -9,7 +9,6 @@
 
 video {
     border-radius: 4px;
-    height: 100%;
 }
 
 .video-controls {
@@ -294,4 +293,8 @@ svg {
     height: 100vw;
     width: 100vh;
     bottom: 0;
+}
+
+.video-fullscreen{
+    height: 100%;
 }
