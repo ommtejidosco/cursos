@@ -203,7 +203,6 @@ class VideoAble extends HTMLElement {
     }
     
     toggleFullScreen = () => {
-        this.video.classList.toggle('video-fullscreen')
         if (document.fullscreenElement) {
             document.exitFullscreen();
             if(this.rotated) this.toggleRotate()
@@ -223,6 +222,7 @@ class VideoAble extends HTMLElement {
         }
     }
     updateFullscreenButton = () => {
+        this.video.classList.toggle('video-fullscreen')
         this.fullscreenIcons.forEach((icon) => icon.classList.toggle('hidden'));
         if(this.rotated) this.toggleRotate()
         if (!document.fullscreenElement&&!document.webkitFullscreenElement) this.hideRotateButton();
@@ -241,4 +241,4 @@ class VideoAble extends HTMLElement {
     }
 }
 customElements.define('video-able', VideoAble);
-loadComponentStyle('/components/video-able/video-able.css?v=1.1.2')
+loadComponentStyle('/components/video-able/video-able.css?v=1.1.3')
