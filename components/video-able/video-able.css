@@ -5,6 +5,7 @@
 .video_elm {
     position: relative;
     height: 100%;
+    background-color: black;
 }
 
 video {

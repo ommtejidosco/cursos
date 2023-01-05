@@ -8,7 +8,7 @@ class VideoAble extends HTMLElement {
             <div class="video_able_option_button"><div class="play_icon"></div></div>
             <div class="video_logo"></div>
         </div>
-        <video controls class="video" id="${id}" preload="${this.attributes.preload.value}" poster="${this.attributes.poster.value}">
+        <video playsinline controls class="video" id="${id}" preload="${this.attributes.preload.value}" poster="${this.attributes.poster.value}">
           <source src="${this.attributes.src.value}" type="video/mp4"></source>
         </video>
         <div class="video-controls hide" id="video-controls_${id}">
@@ -241,4 +241,4 @@ class VideoAble extends HTMLElement {
     }
 }
 customElements.define('video-able', VideoAble);
-loadComponentStyle('/components/video-able/video-able.css?v=1.1.1')
+loadComponentStyle('/components/video-able/video-able.css?v=1.1.2')
