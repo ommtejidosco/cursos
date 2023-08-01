@@ -8,6 +8,8 @@
     <script type="module">
         import * as jose from './jose/dist/browser/index.js';
         let configureInterval;
+        let authAPI = "https://omm-tejidos-auth.s3.amazonaws.com";
+        let coursesStorage = "https://cursos-omm-tejidos.s3.amazonaws.com";
         window.verifyResponse = async function verifyResponse(jws) {
             let key = await jose.importSPKI(window.serverPublicKey, 'RS256');
             return jose.jwtVerify(jws, key)
@@ -47,7 +49,7 @@ MwIDAQAB
                 .then(result => {
                     localStorage.setItem('account', jws)
                     let courseIds = result.payload.courses.map((value) => value.id)
-                    result.payload.courses.forEach((course) => addScript("/" + course.content + ".js", document.body))
+                    result.payload.courses.forEach((course) => addScript(coursesStorage + "/" + course.content + ".js", document.body))
                     configureInterval = setInterval(configureDone, 2000, courseIds)
                 })
         }
@@ -57,7 +59,6 @@ MwIDAQAB
             return await response.text();
         }
 
-        let authAPI = "https://omm-tejidos-auth.s3.amazonaws.com";
         let queryString = new URL(window.location).search;
         let params = queryString.replace('?', '').split('&').filter((v) => v.includes("id")).map((v) => v.split("="));
         var authId = params.length == 1 ? params[0][1] : undefined;

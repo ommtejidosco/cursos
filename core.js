@@ -1,4 +1,5 @@
 let checker = {};
+let coursesStorage = "https://cursos-omm-tejidos.s3.amazonaws.com";
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -39,8 +40,8 @@ function loadComponentStyle(style){
     document.head.appendChild(cest);
 }
 async function updateProfile() {
-    if (localStorage.getItem('AuthId') && !localStorage.getItem('llavero-amanecer')) addScript('/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
-    if (localStorage.getItem('AuthId') && !localStorage.getItem('espejo-renacer')) addScript('/RO91eBoI0HjoVMTI/qRd5dFSZmM.js', document.body, true)
+    if (localStorage.getItem('AuthId') && !localStorage.getItem('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
+    if (localStorage.getItem('AuthId') && !localStorage.getItem('espejo-renacer')) addScript(coursesStorage + '/RO91eBoI0HjoVMTI/qRd5dFSZmM.js', document.body, true)
 }
 function emitEvent(eventName, ...args){
     return window.dispatchEvent(new CustomEvent(eventName, {detail: args}))
