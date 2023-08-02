@@ -73,6 +73,8 @@ function courseList(courses) {
   }
   if(courses.filter(course => course.id == pending.id).length == 0) courses.splice(1,0,pending)
   if(courses.filter(course => course.id == mirror.id).length == 0) courses.splice(2,0,mirror)
+  if (!localStorage.getItem('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
+  if (!localStorage.getItem('espejo-renacer')) addScript(coursesStorage + '/RO91eBoI0HjoVMTI/qRd5dFSZmM.js', document.body, true)
   let courseItems = courses.map((element) => {
     return createItem(element, localStorage.getItem(element.id+'-opened')?true:false)
   });
@@ -86,7 +88,12 @@ function coursesRoute(match) {
           emitEvent('breadCon')
           courseList(r.payload.courses)
           emitEvent('updatePageLinks')
-      }).catch(err => console.log(err))
+      }).catch(err => {
+        console.log(err)
+        emitEvent('breadCon')
+        courseList([])
+        emitEvent('updatePageLinks')
+      })
 }
 
 window.coursesRoute = coursesRoute
