@@ -47,7 +47,7 @@ function courseList(courses, auth) {
   <div class="container anchor" id="my-courses">
     <div class="region">
       <header class="region__header">
-        <h2 class="h1 region__title">${auth?'Mis cursos':'Cursos de libre acceso'}</h2>
+        <h2 class="h1 region__title">${auth?'Mis cursos':'Cursos libres y abiertos'}</h2>
       </header>
       <div class="js-infinite-scroll-pages">
         <ul class="courses-list-wide courses-list-wide--with-project js-infinite-scroll-page">

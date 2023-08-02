@@ -1,6 +1,7 @@
 .copyleft {
     display: inline-block;
     transform: rotate(180deg);
+    line-height: 30px;
 }
 
 *,
