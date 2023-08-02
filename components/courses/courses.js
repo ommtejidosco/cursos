@@ -42,12 +42,12 @@ function createItem(course, opened) {
   .replaceAll('#{open-course}#',opened?'Continuar':'Iniciar');
 }
 
-function courseList(courses) {
+function courseList(courses, auth) {
   let template = `<div class="js-courses-wrapper">
   <div class="container anchor" id="my-courses">
     <div class="region">
       <header class="region__header">
-        <h2 class="h1 region__title">Mis cursos</h2>
+        <h2 class="h1 region__title">${auth?'Mis cursos':'Cursos de libre acceso'}</h2>
       </header>
       <div class="js-infinite-scroll-pages">
         <ul class="courses-list-wide courses-list-wide--with-project js-infinite-scroll-page">
@@ -71,8 +71,10 @@ function courseList(courses) {
     "description": "Un curso de Laura Duque González",
     "image": "/courses/espejo-renacer.webp"
   }
-  if(courses.filter(course => course.id == pending.id).length == 0) courses.splice(1,0,pending)
-  if(courses.filter(course => course.id == mirror.id).length == 0) courses.splice(2,0,mirror)
+  if(auth&&courses.filter(course => course.id == pending.id).length == 0) courses.splice(1,0,pending)
+  if(auth&&courses.filter(course => course.id == mirror.id).length == 0) courses.splice(2,0,mirror)
+  if (!localStorage.getItem('introduccion-macrame')) addScript(coursesStorage + '/QTR1LxnDVLA7QRrRrXcLBSnOtYU.js', document.body, true)
+  if (!localStorage.getItem('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
   let courseItems = courses.map((element) => {
     return createItem(element, localStorage.getItem(element.id+'-opened')?true:false)
   });
@@ -84,9 +86,30 @@ function coursesRoute(match) {
   window.verifyResponse(account)
       .then(r => {
           emitEvent('breadCon')
-          courseList(r.payload.courses)
+          courseList(r.payload.courses, true)
           emitEvent('updatePageLinks')
-      }).catch(err => console.log(err))
+      }).catch(err => {
+        console.log(err)
+        emitEvent('breadCon')
+        courseList([{
+          "id": "introduccion-macrame",
+          "version": "1.0",
+          "name": "Introducción al macramé",
+          "description": "Un curso de Laura Duque González",
+          "image": "/resources/nudo-alondra.webp",
+          "content": "QTR1LxnDVLA7QRrRrXcLBSnOtYU"
+        },
+        {
+          "id": "llavero-amanecer",
+          "version": "1.0",
+          "name": "Llavero Amanecer",
+          "description": "Un curso de Laura Duque González",
+          "image": "/courses/llavero-amanecer-2.webp",
+          "content": "DsmFmyogoqiX5lC+E4c1sn8BkDA"
+        }
+      ], false)
+        emitEvent('updatePageLinks')
+      })
 }
 
 window.coursesRoute = coursesRoute

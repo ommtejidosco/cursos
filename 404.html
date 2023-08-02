@@ -3284,7 +3284,7 @@
         </div>
         <ul class='legal-list' style="color:#848484; font-weight: 500;">
           <li>
-            <span class="copyleft">&copy;</span> Omm Tejidos 2022 - v1.4.0
+            <span class="copyleft">&copy;</span> Omm Tejidos 2022 - v1.5.1
           </li>
         </ul>
       </div>
@@ -3298,7 +3298,7 @@
     window.addEventListener('load', (event) => {
       updateProfile();
       addScript('/components/contact/contact.js', document.body, true);
-      if (localStorage.getItem('AuthId')) addScript('/install.js', document.body, true);
+      addScript('/install.js', document.body, true);
     });
   </script>
   <svg style="display: none">
