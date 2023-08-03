@@ -1,3 +1,5 @@
+import * as core from '/core.js';
+
 class VideoAble extends HTMLElement {
     connectedCallback() {
         let id = this.attributes.poster.value.replaceAll('/', '_').replaceAll('.', '_').replaceAll('-', '_');
@@ -241,4 +243,4 @@ class VideoAble extends HTMLElement {
     }
 }
 customElements.define('video-able', VideoAble);
-loadComponentStyle('/components/video-able/video-able.css?v=1.1.3')
+core.loadComponentStyle('/components/video-able/video-able.css?v=1.1.3')

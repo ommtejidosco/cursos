@@ -1,6 +1,8 @@
+import * as core from '/core.js';
+
 function changeUnit() {
   let value = document.getElementById("js-course-course-select-navigation").value;
-  if (value && value != "") emitEvent('routerNavigate', value)
+  if (value && value != "") core.emitEvent('routerNavigate', value)
 }
 
 function courseContent(id, name, content, teacher) {
@@ -11,15 +13,15 @@ function courseContent(id, name, content, teacher) {
 
 function openUnit(course, selectedUnit) {
   let unit = course.units[selectedUnit].id;
-  emitEvent('breadCon', course.id, course.name, course.units[selectedUnit].name);
+  core.emitEvent('breadCon', course.id, course.name, course.units[selectedUnit].name);
   document.getElementById('content').innerHTML = courseContent(course.id, course.name, course.units[selectedUnit].content, course.teacher);
   document.getElementById('menu-unidades').innerHTML = createUnitList(course.id, course.units, unit, unidad).join('')
   let mobileUnits = document.getElementById('js-course-course-select-navigation')
   createUnitList(course.id, course.units, unit, unidadMobile).forEach(element => {
     mobileUnits.appendChild(element);
   });
-  emitEvent('updatePageLinks')
-  localStorage.setItem(course.id + '-opened', new Date())
+  core.emitEvent('updatePageLinks')
+  core.storage.instance.set(course.id + '-opened', new Date())
 }
 
 function unidadMobile(courseId, id, numero, nombre, activo){
@@ -49,9 +51,9 @@ function selectUnit(course, unit) {
 }
 
 function openCourse(match) {
-  let course = JSON.parse(localStorage.getItem(match.data.id))
+  let course = JSON.parse(core.storage.instance.get(match.data.id))
   if (course) openUnit(course, selectUnit(course, match.data.unit))
-  else emitEvent('routerNavigate', '/')
+  else core.emitEvent('routerNavigate', '/')
 }
 
 window.openCourse = openCourse;

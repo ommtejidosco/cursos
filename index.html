@@ -3291,14 +3291,15 @@
     </div>
 
   </footer>
-  <script defer src="/core.js"></script>
+  <script defer src="/core.js" type="module"></script>
   <script defer src="/components/greeting/greeting.js"></script>
-  <script defer src="/router.js"></script>
-  <script>
+  <script defer src="/router.js" type="module"></script>
+  <script type="module">
+    import * as core from './core.js';
     window.addEventListener('load', (event) => {
-      updateProfile();
-      addScript('/components/contact/contact.js', document.body, true);
-      addScript('/install.js', document.body, true);
+      core.updateProfile();
+      core.addScript('/components/contact/contact.js?v=1.1', document.body, true, 'module');
+      core.addScript('/install.js', document.body, true);
     });
   </script>
   <svg style="display: none">

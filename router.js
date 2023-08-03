@@ -1,17 +1,18 @@
+import * as core from './core.js';
 const router = new Navigo("/");
 let component = {
-    'coursesRoute': ['/components/courses/courses.js'],
-    'openCourse': ['/components/course/course.js?v=1.2.0','/components/video-able/video-able.js?v=1.1.3']
+    'coursesRoute': ['/components/courses/courses.js?v=1.1.1'],
+    'openCourse': ['/components/course/course.js?v=1.3.0','/components/video-able/video-able.js?v=1.2.0']
 }
 
 router.hooks({
     after() {
-        emitEvent('hideMenu')
+        core.emitEvent('hideMenu')
         router.updatePageLinks();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     already() {
-        emitEvent('hideMenu')
+        core.emitEvent('hideMenu')
     }
 });
 
@@ -31,14 +32,14 @@ function coursesRouter(match) {
 
 function courseRouter(match) {
     routeLoader('openCourse', match)
-    emitEvent('showName')
+    core.emitEvent('showName')
 }
 
 function routeLoader(route, match) {
-    loadComponent(component[route], route, window, match,
-        ()=> emitEvent('showLoadingBar'),
+    core.loadComponent(component[route], route, window, match,
+        ()=> core.emitEvent('showLoadingBar'),
         () => {
-            emitEvent('hideLoadingBar')
+            core.emitEvent('hideLoadingBar')
             router.updatePageLinks();
         })
 }

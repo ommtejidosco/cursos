@@ -1,6 +1,8 @@
+import * as core from '/core.js';
+
 let userFullname, userName, lastName;
 async function showInitialGreeting() {
-    let account = localStorage.getItem('account')
+    let account = core.storage.instance.get('account')
     window.verifyResponse(account).then(r => {
         if (r.payload.name) {
             userFullname = r.payload.name;

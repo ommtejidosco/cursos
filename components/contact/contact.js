@@ -1,3 +1,4 @@
+import * as core from '/core.js';
 function createComponent(){
     let isMobile = window.matchMedia("(any-pointer:coarse)").matches;
     let contactElement = document.createElement('a');
@@ -9,7 +10,7 @@ function createComponent(){
 }
 
 function createContactElm(){
-    loadComponentStyle('/components/contact/contact.css');
+    core.loadComponentStyle('/components/contact/contact.css');
     createComponent();
 }
 
