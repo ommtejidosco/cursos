@@ -1,4 +1,4 @@
-import * as core from '/core.js';
+import {storage, addScript, emitEvent, coursesStorage }  from '/core.js';
 
 function createItem(course, opened) {
   let template = `<li class="paper paper--shadowless course-item">
@@ -75,24 +75,24 @@ function courseList(courses, auth) {
   }
   if(auth&&courses.filter(course => course.id == pending.id).length == 0) courses.splice(1,0,pending)
   if(auth&&courses.filter(course => course.id == mirror.id).length == 0) courses.splice(2,0,mirror)
-  if (!core.storage.instance.get('introduccion-macrame')) addScript(coursesStorage + '/QTR1LxnDVLA7QRrRrXcLBSnOtYU.js', document.body, true)
-  if (!core.storage.instance.get('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
+  if (!storage.instance.get('introduccion-macrame')) addScript(coursesStorage + '/QTR1LxnDVLA7QRrRrXcLBSnOtYU.js', document.body, true)
+  if (!storage.instance.get('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
   let courseItems = courses.map((element) => {
-    return createItem(element, core.storage.instance.get(element.id+'-opened')?true:false)
+    return createItem(element, storage.instance.get(element.id+'-opened')?true:false)
   });
   document.getElementById('content').innerHTML = template.replaceAll('#{courses}#', courseItems.join(''))
 }
 
 function coursesRoute(match) {
-  let account = core.storage.instance.get('account')
+  let account = storage.instance.get('account')
   window.verifyResponse(account)
       .then(r => {
-          core.emitEvent('breadCon')
+          emitEvent('breadCon')
           courseList(r.payload.courses, true)
-          core.emitEvent('updatePageLinks')
+          emitEvent('updatePageLinks')
       }).catch(err => {
         console.log(err)
-        core.emitEvent('breadCon')
+        emitEvent('breadCon')
         courseList([{
           "id": "introduccion-macrame",
           "version": "1.0",
@@ -110,7 +110,7 @@ function coursesRoute(match) {
           "content": "DsmFmyogoqiX5lC+E4c1sn8BkDA"
         }
       ], false)
-        core.emitEvent('updatePageLinks')
+        emitEvent('updatePageLinks')
       })
 }
 
