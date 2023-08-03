@@ -10,7 +10,7 @@ async function showInitialGreeting() {
             userName = names[0]
             lastName = names.length > 2 ? names[2] : names[1];
         }
-        let greeting = getRandomInt(0, 2) == 0 ? 'Hola' : dayTime()
+        let greeting = core.getRandomInt(0, 2) == 0 ? 'Hola' : dayTime()
         showGreeting('¡' + greeting + (userName ? ', ' + userName : '') + '!');
     }).catch(err => console.log(err))
 }

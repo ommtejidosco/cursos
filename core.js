@@ -55,3 +55,4 @@ export {updateProfile as updateProfile}
 export {addScript as addScript}
 export {storage as storage}
 export {coursesStorage as coursesStorage}
+export {getRandomInt as getRandomInt}
