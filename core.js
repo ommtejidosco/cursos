@@ -31,7 +31,7 @@ function addScript(src, parent, async, type) {
     let script = document.createElement('script');
     script.async = async;
     script.src = src;
-    script.type = type;
+    if(type) script.type = type;
     parent.appendChild(script);
 }
 function loadComponentStyle(style){
