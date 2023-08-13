@@ -20,7 +20,7 @@ async function showGreeting(greeting) {
 }
 
 async function showName(){
-    showGreeting(userName ? userName + ' ' + lastName : 'Cursos')
+    showGreeting(userName ? userName + ' ' + lastName : 'Inicio')
 }
 
 function dayTime() {
