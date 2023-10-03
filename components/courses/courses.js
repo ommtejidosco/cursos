@@ -77,6 +77,7 @@ function courseList(courses, auth) {
   if(auth&&courses.filter(course => course.id == mirror.id).length == 0) courses.splice(2,0,mirror)
   if (!storage.instance.get('introduccion-macrame')) addScript(coursesStorage + '/QTR1LxnDVLA7QRrRrXcLBSnOtYU.js', document.body, true)
   if (!storage.instance.get('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
+  if (!storage.instance.get('llavero-republica')) addScript(coursesStorage + '/bGxhdmVybyByZXB1YmxpY2E.js', document.body, true)
   let courseItems = courses.map((element) => {
     return createItem(element, storage.instance.get(element.id+'-opened')?true:false)
   });
@@ -100,6 +101,14 @@ function coursesRoute(match) {
           "description": "Un curso de Laura Duque González",
           "image": "/resources/nudo-alondra.webp",
           "content": "QTR1LxnDVLA7QRrRrXcLBSnOtYU"
+        },
+        {
+          "id": "llavero-republica",
+          "version": "1.0",
+          "name": "Llavero República",
+          "description": "Un curso de Laura Duque González",
+          "image": "/courses/llavero-republica.png",
+          "content": "bGxhdmVybyByZXB1YmxpY2E"
         },
         {
           "id": "llavero-amanecer",
