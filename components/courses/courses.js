@@ -73,8 +73,17 @@ function courseList(courses, auth) {
     "description": "Un curso de Laura Duque González",
     "image": "/courses/espejo-renacer.webp"
   }
+  let rdc = {
+    "id": "llavero-republica",
+    "version": "1.0",
+    "name": "Llavero República",
+    "description": "Un curso de Laura Duque González",
+    "image": "/courses/llavero-republica.png",
+    "content": "bGxhdmVybyByZXB1YmxpY2E"
+  }
   if(auth&&courses.filter(course => course.id == pending.id).length == 0) courses.splice(1,0,pending)
   if(auth&&courses.filter(course => course.id == mirror.id).length == 0) courses.splice(2,0,mirror)
+  if(auth&&courses.filter(course => course.id == rdc.id).length == 0) courses.splice(3,0,rdc)
   if (!storage.instance.get('introduccion-macrame')) addScript(coursesStorage + '/QTR1LxnDVLA7QRrRrXcLBSnOtYU.js', document.body, true)
   if (!storage.instance.get('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
   if (!storage.instance.get('llavero-republica')) addScript(coursesStorage + '/bGxhdmVybyByZXB1YmxpY2E.js', document.body, true)
