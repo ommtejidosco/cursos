@@ -40,7 +40,8 @@ MwIDAQAB
             if (configured(keys)) {
                 clearInterval(configureInterval);
                 configureInterval = null;
-                window.location.replace('/');
+                if(localStorage.getItem('espejo-renacer')) window.location.replace('/courses/espejo-renacer')
+                else window.location.replace('/');
             }
         }
 
@@ -49,7 +50,9 @@ MwIDAQAB
                 .then(result => {
                     localStorage.setItem('account', jws)
                     let courseIds = result.payload.courses.map((value) => value.id)
-                    result.payload.courses.forEach((course) => addScript(coursesStorage + "/" + course.content + ".js", document.body))
+                    result.payload.courses.forEach((course) => {
+                        addScript(coursesStorage + "/" + course.content + ".js", document.body)
+                    })
                     configureInterval = setInterval(configureDone, 2000, courseIds)
                 })
         }
