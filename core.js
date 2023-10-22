@@ -41,8 +41,8 @@ function loadComponentStyle(style){
     document.head.appendChild(cest);
 }
 async function updateProfile() {
-    if (storage.instance.get('AuthId') && !storage.ins.get('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
-    if (storage.instance.get('AuthId') && !storage.ins.get('espejo-renacer')) addScript(coursesStorage + '/RO91eBoI0HjoVMTI/qRd5dFSZmM.js', document.body, true)
+    if (storage.instance.get('AuthId') && !storage.instance.get('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
+    if (storage.instance.get('AuthId') && !storage.instance.get('espejo-renacer')) addScript(coursesStorage + '/RO91eBoI0HjoVMTI/qRd5dFSZmM.js', document.body, true)
 }
 function emitEvent(eventName, ...args){
     return window.dispatchEvent(new CustomEvent(eventName, {detail: args}))
