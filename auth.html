@@ -2,14 +2,120 @@
 <html>
 
 <head>
+    <style>
+        body {
+            background-color: #FEF9F5;
+            overflow: hidden;
+            color: #80543c;
+        }
+
+        #redirect_logo {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .medium_logo {
+            width: 300px;
+            height: 300px;
+        }
+
+        /**
+        * ==============================================
+        * Dot Flashing
+        * ==============================================
+        */
+        .dot-flashing {
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #80543c;
+            color: #80543c;
+            animation: dot-flashing 1s infinite linear alternate;
+            animation-delay: 0.5s;
+        }
+
+        .dot-flashing::before,
+        .dot-flashing::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 0;
+        }
+
+        .dot-flashing::before {
+            left: -15px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #80543c;
+            color: #80543c;
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 0s;
+        }
+
+        .dot-flashing::after {
+            left: 15px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #80543c;
+            color: #80543c;
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 1s;
+        }
+
+        @keyframes dot-flashing {
+            0% {
+                background-color: #80543c;
+            }
+
+            50%,
+            100% {
+                background-color: #978276;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div id="redirect_logo">
+        <img id="redirect_img" src="" />
+        <h2 id="redirect_text"></h2>
+        <div class="dot-flashing"></div>
+    </div>
     <script type="module">
         import * as jose from './jose/dist/browser/index.js';
         let configureInterval;
         let authAPI = "https://omm-tejidos-auth.s3.amazonaws.com";
         let coursesStorage = "https://cursos-omm-tejidos.s3.amazonaws.com";
+
+        let redirectImage = document.getElementById("redirect_img");
+        let queryString = new URL(window.location).search;
+        let queryParams = queryString.replace('?', '').split('&')
+        let params = queryParams.filter((v) => v.includes("id=")).map((v) => v.split("="));
+        let refParam = queryParams.filter((v) => v.includes("ref=")).map((v) => v.split("="));
+        var authId = params.length == 1 ? params[0][1] : undefined;
+        var ref = refParam.length == 1 ? refParam[0][1] : undefined;
+
+        changeImage(ref)
+
+        function changeImage(ref) {
+            redirectImage.addEventListener("load", doAuth)
+            redirectImage.addEventListener("error", doAuth)
+            if (ref == 'sqstcl') redirectImage.src = 'sana.png';
+            else {
+                redirectImage.src = 'icon-omm.webp';
+                redirectImage.classList.add('medium_logo')
+            }
+            document.getElementById("redirect_text").innerText = "Te estamos redirigiendo";
+        }
+
         window.verifyResponse = async function verifyResponse(jws) {
             let key = await jose.importSPKI(window.serverPublicKey, 'RS256');
             return jose.jwtVerify(jws, key)
@@ -35,12 +141,13 @@ MwIDAQAB
             return keys.map((id) => localStorage.getItem(id) ? true : false).every(Boolean)
         }
 
-        function configureDone(keys,redirect) {
+        function configureDone(keys, redirect) {
             console.log('Validando...')
             if (configured(keys)) {
                 clearInterval(configureInterval);
                 configureInterval = null;
-                if(redirect) window.location.replace(redirect)
+                console.log(redirect)
+                if (redirect) window.location.replace(redirect)
                 else window.location.replace('/');
             }
         }
@@ -62,15 +169,15 @@ MwIDAQAB
             return await response.text();
         }
 
-        let queryString = new URL(window.location).search;
-        let params = queryString.replace('?', '').split('&').filter((v) => v.includes("id")).map((v) => v.split("="));
-        var authId = params.length == 1 ? params[0][1] : undefined;
-        if (authId) {
-            localStorage.setItem('AuthId', authId)
-            loadProfile(authAPI + "/" + authId).then(r => {
-                window.configureAccount(r)
-            })
-        } 
+        function doAuth() {
+            if (authId) {
+                localStorage.setItem('AuthId', authId)
+                loadProfile(authAPI + "/" + authId).then(r => {
+                    window.configureAccount(r)
+                })
+            }
+        }
+
     </script>
 </body>
 
