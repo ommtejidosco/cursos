@@ -44,7 +44,7 @@ function createItem(course, opened) {
     .replaceAll('#{open-course}#', opened ? 'Continuar' : 'Iniciar');
 }
 
-function courseList(courses, auth) {
+function courseList(courses, auth, sqstcl) {
   let template = `<div class="js-courses-wrapper">
   <div class="container anchor" id="my-courses">
     <div class="region">
@@ -89,13 +89,13 @@ function courseList(courses, auth) {
     "image": "/courses/llavero-republica.png",
     "content": "bGxhdmVybyByZXB1YmxpY2E"
   }
-  if (auth && courses.filter(course => course.id == basic.id).length == 0) courses.splice(0, 0, basic)
-  if (auth && courses.filter(course => course.id == pending.id).length == 0) courses.splice(1, 0, pending)
-  if (auth && courses.filter(course => course.id == mirror.id).length == 0) courses.splice(2, 0, mirror)
-  if (auth && courses.filter(course => course.id == rdc.id).length == 0) courses.splice(3, 0, rdc)
+  if (auth && !sqstcl && courses.filter(course => course.id == basic.id).length == 0) courses.splice(0, 0, basic)
+  if (auth && !sqstcl && courses.filter(course => course.id == pending.id).length == 0) courses.splice(1, 0, pending)
+  if (auth && !sqstcl && courses.filter(course => course.id == mirror.id).length == 0) courses.splice(2, 0, mirror)
+  if (auth && !sqstcl && courses.filter(course => course.id == rdc.id).length == 0) courses.splice(3, 0, rdc)
   if (!storage.instance.get('introduccion-macrame')) addScript(coursesStorage + '/QTR1LxnDVLA7QRrRrXcLBSnOtYU.js', document.body, true)
-  if (!storage.instance.get('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
-  if (!storage.instance.get('llavero-republica')) addScript(coursesStorage + '/bGxhdmVybyByZXB1YmxpY2E.js', document.body, true)
+  if (!sqstcl && !storage.instance.get('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
+  if (!sqstcl && !storage.instance.get('llavero-republica')) addScript(coursesStorage + '/bGxhdmVybyByZXB1YmxpY2E.js', document.body, true)
   let courseItems = courses.map((element) => {
     return createItem(element, storage.instance.get(element.id + '-opened') ? true : false)
   });
@@ -107,7 +107,7 @@ function coursesRoute(match) {
   window.verifyResponse(account)
     .then(r => {
       emitEvent('breadCon')
-      courseList(r.payload.courses, true)
+      courseList(r.payload.courses, true, r.payload.sqstcl)
       emitEvent('updatePageLinks')
     }).catch(err => {
       console.log(err)
@@ -119,24 +119,8 @@ function coursesRoute(match) {
         "description": "Un curso de Laura Duque González",
         "image": "/resources/nudo-alondra.webp",
         "content": "QTR1LxnDVLA7QRrRrXcLBSnOtYU"
-      },
-      {
-        "id": "llavero-republica",
-        "version": "1.0",
-        "name": "Llavero República",
-        "description": "Un curso de Laura Duque González",
-        "image": "/courses/llavero-republica.png",
-        "content": "bGxhdmVybyByZXB1YmxpY2E"
-      },
-      {
-        "id": "llavero-amanecer",
-        "version": "1.0",
-        "name": "Llavero Amanecer",
-        "description": "Un curso de Laura Duque González",
-        "image": "/courses/llavero-amanecer-2.webp",
-        "content": "DsmFmyogoqiX5lC+E4c1sn8BkDA"
       }
-      ], false)
+      ], false, false)
       emitEvent('updatePageLinks')
     })
 }
