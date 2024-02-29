@@ -147,9 +147,13 @@ MwIDAQAB
                 clearInterval(configureInterval);
                 configureInterval = null;
                 console.log(redirect)
-                if (redirect) window.location.replace(redirect)
-                else window.location.replace('/');
+                setTimeout(redirectUrl, 1000, redirect)
             }
+        }
+
+        function redirectUrl(redirect){
+            if (redirect) window.location.replace(redirect)
+            else window.location.replace('/');
         }
 
         window.configureAccount = function (jws) {
