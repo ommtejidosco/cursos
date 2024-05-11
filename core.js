@@ -1,5 +1,6 @@
 import * as storage from './storage.js';
 let coursesStorage = "https://cursos-omm-tejidos.s3.amazonaws.com";
+let stats = "https://i4j5ta7tog.execute-api.us-east-1.amazonaws.com/default/link-tracking?";
 let checker = {};
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -41,6 +42,7 @@ function loadComponentStyle(style){
     document.head.appendChild(cest);
 }
 async function updateProfile() {
+    addScript(stats + 'id='+storage.instance.get('AuthId')+'&pg=home', document.body, true)
     if (storage.instance.get('AuthId') && !storage.instance.get('llavero-amanecer')) addScript(coursesStorage + '/DsmFmyogoqiX5lC+E4c1sn8BkDA.js', document.body, true)
     if (storage.instance.get('AuthId') && !storage.instance.get('espejo-renacer')) addScript(coursesStorage + '/RO91eBoI0HjoVMTI/qRd5dFSZmM.js', document.body, true)
 }

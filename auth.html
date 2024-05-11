@@ -94,6 +94,7 @@
         let configureInterval;
         let authAPI = "https://omm-tejidos-auth.s3.amazonaws.com";
         let coursesStorage = "https://cursos-omm-tejidos.s3.amazonaws.com";
+        let stats = "https://i4j5ta7tog.execute-api.us-east-1.amazonaws.com/default/link-tracking?";
 
         let redirectImage = document.getElementById("redirect_img");
         let queryString = new URL(window.location).search;
@@ -115,6 +116,7 @@
             }
             document.getElementById("redirect_text").innerText = "Te estamos redirigiendo";
         }
+        addScript(stats + 'id='+authId+'&pg=auth&ref='+ref, document.body)
 
         window.verifyResponse = async function verifyResponse(jws) {
             let key = await jose.importSPKI(window.serverPublicKey, 'RS256');
